@@ -1,0 +1,13 @@
+# Ignore bin and obj folders in all projects
+**/bin/
+**/obj/
+.vs/
+
+#extra filter to ignore dll files
+**/obj/Debug/net8.0/
+
+# Ignore build artifacts and log files
+build/
+logs/
+*.log
+
