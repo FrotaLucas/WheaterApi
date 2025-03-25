@@ -7,8 +7,14 @@ using WheaterApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Redis Config
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost";  // Se o Redis estiver rodando localmente
+    options.InstanceName = "WheaterCache:";
+});
+
 // service to consume api  open-meteo
-builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<WheaterService>();
 
 // add controllers
