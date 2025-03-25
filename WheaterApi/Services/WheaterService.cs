@@ -1,4 +1,5 @@
-﻿using WheaterApi.Model;
+﻿using System.Text.Json;
+using WheaterApi.Model;
 
 namespace WheaterApi.Services
 {
@@ -16,7 +17,12 @@ namespace WheaterApi.Services
 
             var data = await _httpClient.GetFromJsonAsync<WheaterModel>(url);
 
-            return data;
+            return new WheaterModel
+            {
+
+                Latitude = data.Latitude,
+                Longitude = data.Longitude
+            };
 
 
         }

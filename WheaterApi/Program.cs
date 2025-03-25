@@ -27,6 +27,7 @@ if(app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "API funcionando!");
+//app.MapGet("/", () => "API wirking!");
+app.MapControllers();
 
 app.Run();
