@@ -23,22 +23,23 @@ namespace WheaterApi.Services
 
             if(!string.IsNullOrEmpty(cacheData))
             {
-                //transform string into wheaterModel
-                return JsonSerializer.Deserialize<WheaterModel>(cacheData);
+                //transform Byte data format into json ?
+                var json = JsonSerializer.Deserialize<WheaterModel>(cacheData) ;
+                return json;
             }
 
-            var data = await _httpClient.GetFromJsonAsync<WheaterModel>(url);
+            var responseApi = await _httpClient.GetFromJsonAsync<WheaterModel>(url);
 
             //set cache for 10 min
             var options = new DistributedCacheEntryOptions()
                 .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
 
-            _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(data), options);
+            _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(responseApi), options);
 
             return new WheaterModel
             {
-                Latitude = data.Latitude,
-                Longitude = data.Longitude
+                Latitude = responseApi.Latitude,
+                Longitude = responseApi.Longitude
             };
 
 
