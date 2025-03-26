@@ -10,8 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Redis Config
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = "localhost";  // Se o Redis estiver rodando localmente
-    options.InstanceName = "WheaterCache:";
+    // Se o Redis estiver rodando localmente
+    options.Configuration = "localhost";  
+    //se quiser adicionar uma palavra extra a chave redis armazenada no cache
+    //options.InstanceName = "WheaterCache:";
 });
 
 // service to consume api  open-meteo
