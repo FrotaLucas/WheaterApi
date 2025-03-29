@@ -4,11 +4,17 @@ namespace WheaterApi.Model
 {
     public class WheaterModel
     {
-        [JsonPropertyName("latitude")]
         public double Latitude { get; set; }
 
-        [JsonPropertyName("longitude")]
         public double Longitude { get; set; }
+
+        [JsonPropertyName("timezone")]
+        public string TimeZone { get; set; } = string.Empty;
+
+        [JsonPropertyName("hourly")]
+        public WheaterDataModel TemperatureDate { get; set; } 
+
+
 
 
     }
