@@ -14,6 +14,14 @@ namespace WheaterApi.Services
             _cache = cache;
         }
 
+        //api opencage data
+        //latitude e longitude 
+        //https://api.opencagedata.com/geocode/v1/json?q=-22%2C+-43&key=42100b764202470b9a1ca4db79301088
+
+        //Forward Geocoding
+        //city name
+        //https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088
+
         public async Task<WheaterModel> getWheaterData(double latitude, double longitude, string timezone)
         {
             string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m&timezone=Europe%2F{timezone}&forecast_days=1";
