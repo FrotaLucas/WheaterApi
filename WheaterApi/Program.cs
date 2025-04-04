@@ -7,13 +7,16 @@ using WheaterApi.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Força a aplicação a rodar na porta 4000
-builder.WebHost.ConfigureKestrel(options =>
-{
-    // HTTP see launchSettings
-    //options.ListenAnyIP(4000); 
-    // HTTPS see launchSettings
-    options.ListenAnyIP(4001, listenOptions => listenOptions.UseHttps()); 
-});
+//builder.WebHost.ConfigureKestrel(options =>
+//{
+//    // HTTP see launchSettings
+//    //options.ListenAnyIP(4000);
+//    //http://localhost:4000/swagger/index.html
+
+//    // HTTPS see launchSettings. A imagem aspnet:8.0 nao tem certificado valido para rodar HTTPS
+//    options.ListenAnyIP(4001, listenOptions => listenOptions.UseHttps());
+//    //https://localhost:4001/swagger/index.html
+//});
 
 // Redis Config
 builder.Services.AddStackExchangeRedisCache(options =>

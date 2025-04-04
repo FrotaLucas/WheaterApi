@@ -3,11 +3,12 @@
     "WheaterApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      //"launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:4001;http://localhost:4000"
+      "applicationUrl": "https://localhost:61890;http://localhost:61891"
+      //"applicationUrl": "https://localhost:4001;http://localhost:4000"
     },
     "Container (Dockerfile)": {
       "commandName": "Docker",
