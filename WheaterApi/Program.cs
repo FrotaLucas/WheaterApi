@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Força a aplicação a rodar na porta 4000
 builder.WebHost.ConfigureKestrel(options =>
 {
-    // HTTP
+    // HTTP see launchSettings
     //options.ListenAnyIP(4000); 
     // HTTPS see launchSettings
     options.ListenAnyIP(4001, listenOptions => listenOptions.UseHttps()); 
