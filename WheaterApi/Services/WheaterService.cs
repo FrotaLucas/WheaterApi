@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
+using System.Web;
 using WheaterApi.Model;
 
 namespace WheaterApi.Services
@@ -24,6 +25,11 @@ namespace WheaterApi.Services
 
         public async Task<ResponseData> getLatitudeAndLongitude(string city)
         {
+            //remove any simbol or circumflex accent but brings erros from api response
+            //city = HttpUtility.UrlDecode(city.Trim().ToLower().Replace(" ", ""));
+            city = city.Trim().ToLower();
+
+            Console.WriteLine(city);
             //city  = "https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088";
             string uri = $"https://api.opencagedata.com/geocode/v1/json?q={city}&key=42100b764202470b9a1ca4db79301088";
             var response = await _httpClient.GetFromJsonAsync<ResponseData>(uri);
@@ -31,25 +37,32 @@ namespace WheaterApi.Services
             return response;
         }
             
-        public async Task<WheaterModel> getTemperatureData(string timezone)
+        public async Task<WheaterModel> getTemperatureData(string city)
         {
             string latitude = string.Empty;
             string longitude = string.Empty;
-            
-            var response = await getLatitudeAndLongitude(timezone);
+            string continent = string.Empty;
+            string cityReference = string.Empty;
+            string timeZone = string.Empty;
+            GeographyData geographyData = null;
 
-            if (response != null || response.results != null) {
-                foreach (var item in response.results)
-                {
-                    latitude = item.Geometry.Latitude.ToString();
-                    longitude = item.Geometry.Longitude.ToString();
+            var response = await getLatitudeAndLongitude(city);
 
-                    Console.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
-                }
+            if( response.results != null && response.results.Count > 0)
+            {
+                geographyData = response.results[0];
             }
 
 
-            string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m&timezone=Europe%2F{timezone}&forecast_days=1";
+            timeZone = geographyData.Annotations.Timezone.name;
+            continent = timeZone.Split("/")[0];
+            cityReference = timeZone.Split("/").Last();
+            latitude = geographyData.Geometry.Latitude.ToString();
+            longitude = geographyData.Geometry.Longitude.ToString();
+
+
+
+            string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m&timezone={continent}%2F{cityReference}&forecast_days=1";
             //"https://api.open-meteo.com/v1/forecast?latitude=48.1374&longitude=11.5755&hourly=temperature_2m&timezone=Europe%2FBerlin&forecast_days=1"
 
             string cacheKey = $"{latitude}-{longitude}";
