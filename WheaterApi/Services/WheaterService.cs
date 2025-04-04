@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using System.Web;
-using WheaterApi.Model;
+using WheaterApi.Model.Geography;
+using WheaterApi.Model.Wheater;
 
 namespace WheaterApi.Services
 {
@@ -23,21 +24,19 @@ namespace WheaterApi.Services
         //city name
         //https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088
 
-        public async Task<ResponseData> getLatitudeAndLongitude(string city)
+        public async Task<ResponseGeopraphy> getLatitudeAndLongitude(string city)
         {
             //remove any simbol or circumflex accent but brings erros from api response
             //city = HttpUtility.UrlDecode(city.Trim().ToLower().Replace(" ", ""));
             city = city.Trim().ToLower();
 
-            Console.WriteLine(city);
-            //city  = "https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088";
             string uri = $"https://api.opencagedata.com/geocode/v1/json?q={city}&key=42100b764202470b9a1ca4db79301088";
-            var response = await _httpClient.GetFromJsonAsync<ResponseData>(uri);
+            var response = await _httpClient.GetFromJsonAsync<ResponseGeopraphy>(uri);
 
             return response;
         }
             
-        public async Task<WheaterModel> getTemperatureData(string city)
+        public async Task<ResponseWheater> getTemperatureData(string city)
         {
             string latitude = string.Empty;
             string longitude = string.Empty;
@@ -75,7 +74,7 @@ namespace WheaterApi.Services
             //    return json;
             //}
 
-            var responseApi = await _httpClient.GetFromJsonAsync<WheaterModel>(url);
+            var responseApi = await _httpClient.GetFromJsonAsync<ResponseWheater>(url);
 
             //set cache for 10 min
             //var options = new DistributedCacheEntryOptions()
@@ -83,7 +82,7 @@ namespace WheaterApi.Services
 
             //_cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(responseApi), options);
 
-            return new WheaterModel
+            return new ResponseWheater
             {
                 Latitude = responseApi.Latitude,
                 Longitude = responseApi.Longitude,
