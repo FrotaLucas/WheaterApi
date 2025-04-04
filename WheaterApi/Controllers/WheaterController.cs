@@ -17,9 +17,9 @@ namespace WheaterApi.Controllers
         //route https://localhost:61890/api/Wheater?latitude=20&longitude=30&timeZone=Berlin
 
         [HttpGet]
-        public async Task<IActionResult> getWheaterData([FromQuery] double latitude, [FromQuery] double longitude, [FromQuery] string timeZone )
+        public async Task<IActionResult> getWheaterData([FromQuery] string city )
         {
-            var response = await _wheaterService.getTemperatureData(latitude, longitude, timeZone);
+            var response = await _wheaterService.getTemperatureData(city);
             
             if (response == null) { 
                 return NotFound("Data not found");
