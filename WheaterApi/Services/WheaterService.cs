@@ -24,17 +24,30 @@ namespace WheaterApi.Services
 
         public async Task<ResponseData> getLatitudeAndLongitude(string city)
         {
-            city  = "https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088";
-            var response = await _httpClient.GetFromJsonAsync<ResponseData>(city);
+            //city  = "https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088";
+            string uri = $"https://api.opencagedata.com/geocode/v1/json?q={city}&key=42100b764202470b9a1ca4db79301088";
+            var response = await _httpClient.GetFromJsonAsync<ResponseData>(uri);
 
             return response;
         }
-
-        public async Task<WheaterModel> getTemperatureData(double latitude, double longitude, string timezone)
+            
+        public async Task<WheaterModel> getTemperatureData(string timezone)
         {
+            string latitude = string.Empty;
+            string longitude = string.Empty;
+            
+            var response = await getLatitudeAndLongitude(timezone);
 
-            //test
-            var result = getLatitudeAndLongitude("RioDeJaneiro");
+            if (response != null || response.results != null) {
+                foreach (var item in response.results)
+                {
+                    latitude = item.Geometry.Latitude.ToString();
+                    longitude = item.Geometry.Longitude.ToString();
+
+                    Console.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
+                }
+            }
+
 
             string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m&timezone=Europe%2F{timezone}&forecast_days=1";
             //"https://api.open-meteo.com/v1/forecast?latitude=48.1374&longitude=11.5755&hourly=temperature_2m&timezone=Europe%2FBerlin&forecast_days=1"
