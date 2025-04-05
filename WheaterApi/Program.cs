@@ -27,6 +27,10 @@ builder.Services.AddStackExchangeRedisCache(options =>
 // Service para consumir a API open-meteo
 builder.Services.AddHttpClient<WheaterService>();
 
+//NAO SEI SE PRECISA 
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
 // Add controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -43,6 +47,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); // por padrão ele já usa /swagger como rota
 }
 
+
+
+//TUDO PARA BLAZOR 
+app.UseHttpsRedirection();
+//app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+
+app.UseRouting();
+
+app.MapRazorPages();
 app.MapControllers();
+app.MapFallbackToFile("index.html");
+
+//JA ESTA EM CIMA CONFIGURADO
+//app.MapControllers();
 
 app.Run();
