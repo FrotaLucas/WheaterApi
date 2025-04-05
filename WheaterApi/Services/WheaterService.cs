@@ -6,7 +6,7 @@ using WheaterApi.Model.Wheater;
 
 namespace WheaterApi.Services
 {
-    public class WheaterService
+    public class WheaterService : IWheaterService
     {
         private readonly HttpClient _httpClient;
         private readonly IDistributedCache _cache;

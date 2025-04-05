@@ -8,8 +8,8 @@ namespace WheaterApi.Controllers
     [ApiController]
     public class WheaterController : ControllerBase
     {
-        private readonly WheaterService _wheaterService;
-        public WheaterController(WheaterService wheaterService)
+        private readonly IWheaterService _wheaterService;
+        public WheaterController(IWheaterService wheaterService)
         {
             _wheaterService = wheaterService;
         }
