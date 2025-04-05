@@ -1,7 +1,39 @@
 ﻿@page "/"
+@using WheaterApi.Model.Wheater
+@inject ITemperatureService TemperatureService
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<div>
+
+    <h2>Temperature</h2>
+
+    @* <h3>@response.TimeZone</h3> *@
+
+    <div>
+        @foreach(var item in response.TemperatureDate.Temperature)
+        {
+            <div>@item</div>   
+        }
+    </div>
+
+
+</div>
+
+
+<MainComponent/>
+
+@code{
+    private ResponseWheater response = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        response = await TemperatureService.getTemperature();
+    }
+
+
+}
