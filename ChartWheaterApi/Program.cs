@@ -1,15 +1,22 @@
 using ChartWheaterApi.Components;
 using ChartWheaterApi.Components.Services;
 
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddHttpClient<ITemperatureService, TemperatureService>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5000/");
+});
 
 //services Interface && Class
-builder.Services.AddScoped<ITemperatureService, TemperatureService>();
+//builder.Services.AddScoped<ITemperatureService, TemperatureService>();
 
 
 var app = builder.Build();
