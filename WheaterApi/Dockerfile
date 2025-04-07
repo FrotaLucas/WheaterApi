@@ -1,19 +1,24 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# Estágio base para runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
-# This stage is used to build the service project
+# Estágio de build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["WheaterApi/WheaterApi.csproj", "WheaterApi/"]
-RUN dotnet restore "./WheaterApi/WheaterApi.csproj"
+RUN dotnet restore "WheaterApi/WheaterApi.csproj"
 COPY . .
 WORKDIR "/src/WheaterApi"
-RUN dotnet build "./WheaterApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "WheaterApi.csproj" -c Release -o /app/build
+
+# Estágio de publish
+FROM build AS publish
+RUN dotnet publish "WheaterApi.csproj" -c Release -o /app/publish
+
+# Estágio final
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "WheaterApi.dll"]
