@@ -14,25 +14,77 @@ Welcome to your new app.
 
     @* <h3>@response.TimeZone</h3> *@
 
-    <div>
-        @foreach(var item in response.TemperatureDate.Temperature)
-        {
-            <div>@item</div>   
-        }
-    </div>
+
+
+    <button @onclick="FindTemperature">Click</button>
+
+    @if (TemperatureService.Data?.TemperatureDate?.Temperature == null || !TemperatureService.Data.TemperatureDate.Temperature.Any())
+    {
+        <div>Lets Start</div>
+    }
+    else
+    {
+        <div>
+            <label>Latitude</label>
+            <div>@TemperatureService.Data.Latitude</div>
+
+            <label>Longitude</label> <!-- Corrigi label duplicado -->
+            <div>@TemperatureService.Data.Longitude</div>
+
+            @foreach (var item in TemperatureService.Data.TemperatureDate.Temperature)
+            {
+                <div>@item</div>
+            }
+        </div>
+    }
+
 
 
 </div>
 
-
-<MainComponent/>
+@* 
+<MainComponent/> *@
 
 @code{
-    private ResponseWheater response = null;
+    //private ResponseWheater response = null;
+
+    // protected async override void OnInitialized()
+    // {
+    //     await FindTemperature();
+    //     //ProductService.ProductsChanged += StateHasChanged;
+    //     TemperatureService.TemperatureChanged += StateHasChanged;
+    // }
 
     protected override async Task OnInitializedAsync()
     {
-        response = await TemperatureService.getTemperature();
+        TemperatureService.TemperatureChanged += StateHasChanged;
+        await FindTemperature();
+    }
+
+
+    // public void Dispose()
+    // {
+    //     //ProductService.ProductsChanged -= StateHasChanged;
+    //     TemperatureService.TemperatureChanged -= StateHasChanged;
+    // }
+
+    public void Dispose()
+    {
+        TemperatureService.TemperatureChanged -= StateHasChanged;
+    }
+
+    // protected async Task FindTemperature()
+    // {
+
+    //     Console.WriteLine("click event");
+    //     await TemperatureService.UpdateApi("Berlin");
+    //     //response = TemperatureService.Data;
+    // }
+
+    protected async Task FindTemperature()
+    {
+        await TemperatureService.UpdateApi("Berlin");
+        StateHasChanged(); // força renderização
     }
 
 
