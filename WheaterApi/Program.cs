@@ -24,6 +24,19 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = "localhost";
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorClient", policy =>
+    {
+        policy.WithOrigins(
+                "http://localhost:5171",
+                "https://localhost:7090"
+            )
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 // Service para consumir a API open-meteo
 builder.Services.AddHttpClient<WheaterService>();
 
@@ -42,6 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(); // por padrão ele já usa /swagger como rota
 }
+
+//sem useRouting a politica do CORS pode nao ser aplicada
+app.UseRouting(); 
+
+//implementa CORS 
+app.UseCors("AllowBlazorClient");
 
 app.MapControllers();
 
