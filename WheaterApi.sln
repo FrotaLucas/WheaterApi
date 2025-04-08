@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WheaterApi", "WheaterApi\Wh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartWheaterApi", "ChartWheaterApi\ChartWheaterApi.csproj", "{050410A2-8BBB-4AAE-B327-DE75F22A428A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wheater.Shared", "Wheater.Shared\Wheater.Shared.csproj", "{84903F4F-1CB5-43CF-9619-8880FB6152EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{050410A2-8BBB-4AAE-B327-DE75F22A428A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{050410A2-8BBB-4AAE-B327-DE75F22A428A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{050410A2-8BBB-4AAE-B327-DE75F22A428A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84903F4F-1CB5-43CF-9619-8880FB6152EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84903F4F-1CB5-43CF-9619-8880FB6152EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84903F4F-1CB5-43CF-9619-8880FB6152EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84903F4F-1CB5-43CF-9619-8880FB6152EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
