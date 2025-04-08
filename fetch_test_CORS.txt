@@ -1,0 +1,37 @@
+//testar no Browser antes. Program.cs do Backend tem essas rotas mapeadas para habilitar a requisicao 
+
+//1 teste partindo do HTTP http://localhost:5171/
+
+fetch("http://localhost:5000/api/Wheater?city=Berlin", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+        // Se você tivesse Auth: "Authorization": "Bearer <token>"
+    },
+    mode: "cors" // força o navegador a usar CORS
+})
+.then(response => {
+    if (!response.ok) throw new Error("Erro: " + response.status);
+    return response.json();
+})
+.then(data => console.log("Sucesso:", data))
+.catch(err => console.error("Erro na chamada:", err));
+
+
+*******
+//2 Teste partindo do HTTPS https://localhost:7090/
+
+fetch("http://localhost:5000/api/Wheater?city=Berlin", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+        // Se você tivesse Auth: "Authorization": "Bearer <token>"
+    },
+    mode: "cors" // força o navegador a usar CORS
+})
+.then(response => {
+    if (!response.ok) throw new Error("Erro: " + response.status);
+    return response.json();
+})
+.then(data => console.log("Sucesso:", data))
+.catch(err => console.error("Erro na chamada:", err));
