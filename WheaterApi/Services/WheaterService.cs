@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using System.Web;
-using WheaterApi.Model.Geography;
-using WheaterApi.Model.Wheater;
+using Wheater.Shared.Model.Wheater;
+using Wheater.Shared.Model.Geography;
 
 namespace WheaterApi.Services
 {

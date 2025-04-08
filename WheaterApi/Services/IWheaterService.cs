@@ -1,5 +1,5 @@
-﻿using WheaterApi.Model.Geography;
-using WheaterApi.Model.Wheater;
+﻿using Wheater.Shared.Model.Wheater;
+using Wheater.Shared.Model.Geography;
 
 namespace WheaterApi.Services
 {
