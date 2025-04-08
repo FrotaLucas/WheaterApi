@@ -16,27 +16,25 @@ Welcome to your new app.
 
 
 
+    <input @bind="inputCity" placeholder="enter the city" />
     <button @onclick="FindTemperature">Click</button>
 
-    @if (TemperatureService.Data?.TemperatureDate?.Temperature == null || !TemperatureService.Data.TemperatureDate.Temperature.Any())
-    {
-        <div>Lets Start</div>
-    }
-    else
-    {
-        <div>
+
+
+    <div>
             <label>Latitude</label>
             <div>@TemperatureService.Data.Latitude</div>
 
             <label>Longitude</label> <!-- Corrigi label duplicado -->
             <div>@TemperatureService.Data.Longitude</div>
-
-            @foreach (var item in TemperatureService.Data.TemperatureDate.Temperature)
-            {
-                <div>@item</div>
-            }
+            
+            @if( TemperatureService.Data !=null && TemperatureService.Data.TemperatureDate != null &&
+                TemperatureService.Data.TemperatureDate.Temperature.Any() )
+                @foreach (var item in TemperatureService.Data.TemperatureDate.Temperature)
+                {
+                    <div>@item</div>
+                }
         </div>
-    }
 
 
 
@@ -46,6 +44,7 @@ Welcome to your new app.
 <MainComponent/> *@
 
 @code{
+    string inputCity = "Berlin";
     //private ResponseWheater response = null;
 
     // protected async override void OnInitialized()
@@ -83,8 +82,8 @@ Welcome to your new app.
 
     protected async Task FindTemperature()
     {
-        await TemperatureService.UpdateApi("Berlin");
-        StateHasChanged(); // força renderização
+        await TemperatureService.UpdateApi(inputCity);
+        StateHasChanged(); // força renderização. Talvez nao precise disso
     }
 
 
