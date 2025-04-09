@@ -31,12 +31,35 @@ Welcome to your new app.
         <label>Longitude</label> <!-- Corrigi label duplicado -->
         <div>@TemperatureService.Data.Longitude</div>
 
+        
+
+        @* PESQUISAR aqui
+https://www.google.com/search?q=chartjs.blazor+graphic+line&rlz=1C1ISCS_pt-PTBR975BR975&oq=chartjs.blazor+graphic+line&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCTEyNDczajBqOagCALACAQ&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:e4af8501,vid:gGe_oUzwxkg,st:0
+ *@
+        @* axios y *@
         @if (TemperatureService.Data != null && TemperatureService.Data.TemperatureDate != null &&
+        TemperatureService.Data.TemperatureDate.Temperature != null &&
         TemperatureService.Data.TemperatureDate.Temperature.Any())
+        {
             @foreach (var item in TemperatureService.Data.TemperatureDate.Temperature)
             {
                 <div>@item</div>
             }
+        }
+
+        @* axios X *@
+        @if (TemperatureService.Data != null && TemperatureService.Data.TemperatureDate != null &&
+        TemperatureService.Data.TemperatureDate.Time != null &&
+        TemperatureService.Data.TemperatureDate.Time.Any())
+        {
+            @foreach (var item in TemperatureService.Data.TemperatureDate.Time)
+            {
+                <div>@item.Split("T")[1]</div>
+            }
+        }
+
+
+
     </div>
 
 
@@ -48,6 +71,12 @@ Welcome to your new app.
 
 @code {
     string inputCity = "Berlin";
+    public List<ChartData> chartData = new();
+
+    public class ChartData {
+        public string Time { get; set; }
+        public double Temps { get; set;  }
+    }
     //private ResponseWheater response = null;
 
     // protected async override void OnInitialized()
@@ -83,11 +112,32 @@ Welcome to your new app.
     //     //response = TemperatureService.Data;
     // }
 
+    private void BuildChart(){
+        if (TemperatureService.Data.TemperatureDate.Temperature != null && TemperatureService.Data.TemperatureDate != null)
+        {
+            chartData.Clear();
+
+            for(int i = 0; i < TemperatureService.Data.TemperatureDate.Temperature.Count(); i++)
+            {
+                var data = new ChartData()
+                    {
+                        Temps = TemperatureService.Data.TemperatureDate.Temperature[i],
+                        Time = TemperatureService.Data.TemperatureDate.Time[i]
+                    };
+
+                chartData.Add(data);
+            }
+
+        }
+    }
+
     protected async Task FindTemperature()
     {
         Console.WriteLine("event");
         await TemperatureService.UpdateApi(inputCity);
+        BuildChart();
         StateHasChanged(); // força renderização. Talvez nao precise disso
+
     }
 
 
