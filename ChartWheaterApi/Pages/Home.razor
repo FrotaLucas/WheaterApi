@@ -33,41 +33,44 @@ Welcome to your new app.
 
     </div>
 
-        @if (TemperatureService.Data?.TemperatureDate?.Temperature != null)
-        {
-            <SfChart Title="Temperature Over Time" Width="1200px">
-@*             It lets you hover over points and see the values being plotted.acho q nao precisa
+    @if (TemperatureService.Data?.TemperatureDate?.Temperature != null)
+    {
+        <SfChart Title="@($" {inputCity}, Timezone: {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+
+
+
+            @*             It lets you hover over points and see the values being plotted.acho q nao precisa!!!
  *@                <ChartTooltipSettings Enable="true" />
-                    <ChartArea Background="Skyblue"/>
-                
-                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time">
-                </ChartPrimaryXAxis>
+            <ChartArea Background="Skyblue"/>
 
-            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="-20" Maximum="50">
-                </ChartPrimaryYAxis>
+            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hourly">
+            </ChartPrimaryXAxis>
 
-                <ChartSeriesCollection>
-                    <ChartSeries DataSource="@chartData"
-                                 Fill="orange"
-                                 DashArray="10"
-                                 XName="Time"
-                                 YName="Temps"
-                                 Type="ChartSeriesType.Line"
-                                 Width="2">
+            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="@($"{minTemp}")" Maximum="50">
+            </ChartPrimaryYAxis>
+
+            <ChartSeriesCollection>
+                <ChartSeries DataSource="@chartData"
+                Fill="orange"
+                DashArray="10"
+                XName="Time"
+                YName="Temps"
+                Type="ChartSeriesType.Line"
+                Width="2">
                     <ChartMarker Visible="true" Shape="ChartShape.Circle" Width="10" Height="10">
                         <ChartMarkerBorder Width="2" Color="black"></ChartMarkerBorder>
                         <ChartDataLabel Visible="true"></ChartDataLabel>
                     </ChartMarker>
 
-                    </ChartSeries>
-                </ChartSeriesCollection>
-            </SfChart>
+                </ChartSeries>
+            </ChartSeriesCollection>
+        </SfChart>
 
-        }
+    }
 
 
 
-    
+
 
 
 
@@ -79,6 +82,7 @@ Welcome to your new app.
 @code {
     string inputCity = "Berlin";
     public List<ChartData> chartData = new();
+    double minTemp = 0;
 
     public class ChartData {
         public string Time { get; set; }
@@ -121,19 +125,22 @@ Welcome to your new app.
 
     private void BuildChart(){
         if (TemperatureService.Data.TemperatureDate.Temperature != null && TemperatureService.Data.TemperatureDate != null)
-        {
+        {  
             chartData.Clear();
-
+          
             for(int i = 0; i < TemperatureService.Data.TemperatureDate.Temperature.Count(); i++)
-            {
+            {   
                 var data = new ChartData()
                     {
                         Temps = TemperatureService.Data.TemperatureDate.Temperature[i],
                         Time = TemperatureService.Data.TemperatureDate.Time[i].Split("T")[1]
                     };
 
+                if (TemperatureService.Data.TemperatureDate.Temperature[i] < minTemp)
+                    minTemp = -20;
                 chartData.Add(data);
             }
+            
 
         }
     }
