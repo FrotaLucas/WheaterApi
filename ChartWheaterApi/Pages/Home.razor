@@ -31,36 +31,43 @@ Welcome to your new app.
         <label>Longitude</label> <!-- Corrigi label duplicado -->
         <div>@TemperatureService.Data.Longitude</div>
 
-        
-
-        @* PESQUISAR aqui
-https://www.google.com/search?q=chartjs.blazor+graphic+line&rlz=1C1ISCS_pt-PTBR975BR975&oq=chartjs.blazor+graphic+line&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCTEyNDczajBqOagCALACAQ&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:e4af8501,vid:gGe_oUzwxkg,st:0
- *@
-        @* axios y *@
-        @if (TemperatureService.Data != null && TemperatureService.Data.TemperatureDate != null &&
-        TemperatureService.Data.TemperatureDate.Temperature != null &&
-        TemperatureService.Data.TemperatureDate.Temperature.Any())
-        {
-            @foreach (var item in TemperatureService.Data.TemperatureDate.Temperature)
-            {
-                <div>@item</div>
-            }
-        }
-
-        @* axios X *@
-        @if (TemperatureService.Data != null && TemperatureService.Data.TemperatureDate != null &&
-        TemperatureService.Data.TemperatureDate.Time != null &&
-        TemperatureService.Data.TemperatureDate.Time.Any())
-        {
-            @foreach (var item in TemperatureService.Data.TemperatureDate.Time)
-            {
-                <div>@item.Split("T")[1]</div>
-            }
-        }
-
-
-
     </div>
+
+        @if (TemperatureService.Data?.TemperatureDate?.Temperature != null)
+        {
+            <SfChart Title="Temperature Over Time" Width="1200px">
+@*             It lets you hover over points and see the values being plotted.acho q nao precisa
+ *@                <ChartTooltipSettings Enable="true" />
+                    <ChartArea Background="Skyblue"/>
+                
+                <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time">
+                </ChartPrimaryXAxis>
+
+            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="-20" Maximum="50">
+                </ChartPrimaryYAxis>
+
+                <ChartSeriesCollection>
+                    <ChartSeries DataSource="@chartData"
+                                 Fill="orange"
+                                 DashArray="10"
+                                 XName="Time"
+                                 YName="Temps"
+                                 Type="ChartSeriesType.Line"
+                                 Width="2">
+                    <ChartMarker Visible="true" Shape="ChartShape.Circle" Width="10" Height="10">
+                        <ChartMarkerBorder Width="2" Color="black"></ChartMarkerBorder>
+                        <ChartDataLabel Visible="true"></ChartDataLabel>
+                    </ChartMarker>
+
+                    </ChartSeries>
+                </ChartSeriesCollection>
+            </SfChart>
+
+        }
+
+
+
+    
 
 
 
@@ -75,7 +82,7 @@ https://www.google.com/search?q=chartjs.blazor+graphic+line&rlz=1C1ISCS_pt-PTBR9
 
     public class ChartData {
         public string Time { get; set; }
-        public double Temps { get; set;  }
+        public double Temps { get; set; }
     }
     //private ResponseWheater response = null;
 
@@ -122,7 +129,7 @@ https://www.google.com/search?q=chartjs.blazor+graphic+line&rlz=1C1ISCS_pt-PTBR9
                 var data = new ChartData()
                     {
                         Temps = TemperatureService.Data.TemperatureDate.Temperature[i],
-                        Time = TemperatureService.Data.TemperatureDate.Time[i]
+                        Time = TemperatureService.Data.TemperatureDate.Time[i].Split("T")[1]
                     };
 
                 chartData.Add(data);
