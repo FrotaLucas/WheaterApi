@@ -35,7 +35,7 @@ Welcome to your new app.
 
     @if (TemperatureService.Data?.TemperatureDate?.Temperature != null)
     {
-        <SfChart Title="@($" {inputCity}, Timezone: {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+        <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
 
 
@@ -43,7 +43,7 @@ Welcome to your new app.
  *@                <ChartTooltipSettings Enable="true" />
             <ChartArea Background="Skyblue"/>
 
-            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hourly">
+            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hourly(h)">
             </ChartPrimaryXAxis>
 
             <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="@($"{minTemp}")" Maximum="50">
