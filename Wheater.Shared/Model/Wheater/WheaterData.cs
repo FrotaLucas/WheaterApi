@@ -6,8 +6,15 @@ namespace Wheater.Shared.Model.Wheater
     {
         public List<string> Time { get; set; }
 
+
         [JsonPropertyName("temperature_2m")]
+
         public List<double> Temperatures { get; set; }
+
+
+        [JsonPropertyName("precipitation_probability")]
+        
+        public List<double> Precipitation { get; set; }
 
 
 
