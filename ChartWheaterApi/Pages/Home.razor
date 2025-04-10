@@ -33,7 +33,7 @@
 
 
 
-@if (TemperatureService.Data?.TemperatureDate?.Temperature != null && TemperatureService.Data?.TemperatureDate?.Time != null)
+@if (TemperatureService.Data?.TemperatureDate?.Temperatures != null && TemperatureService.Data?.TemperatureDate?.Time != null)
     {
         <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
@@ -113,19 +113,19 @@
     // }
 
     private void BuildChart(){
-        if (TemperatureService.Data.TemperatureDate.Temperature != null && TemperatureService.Data.TemperatureDate != null)
+        if (TemperatureService.Data.TemperatureDate.Temperatures != null && TemperatureService.Data.TemperatureDate != null)
         {  
             chartData.Clear();
           
-            for(int i = 0; i < TemperatureService.Data.TemperatureDate.Temperature.Count(); i++)
+            for(int i = 0; i < TemperatureService.Data.TemperatureDate.Temperatures.Count(); i++)
             {   
                 var data = new ChartData()
                     {
-                        Temps = TemperatureService.Data.TemperatureDate.Temperature[i],
+                        Temps = TemperatureService.Data.TemperatureDate.Temperatures[i],
                         Time = TemperatureService.Data.TemperatureDate.Time[i].Split("T")[1]
                     };
 
-                if (TemperatureService.Data.TemperatureDate.Temperature[i] < minTemp)
+                if (TemperatureService.Data.TemperatureDate.Temperatures[i] < minTemp)
                     minTemp = -20;
                 chartData.Add(data);
             }

@@ -7,7 +7,7 @@ namespace Wheater.Shared.Model.Wheater
         public List<string> Time { get; set; }
 
         [JsonPropertyName("temperature_2m")]
-        public List<double> Temperature { get; set; }
+        public List<double> Temperatures { get; set; }
 
     }
 }
