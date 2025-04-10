@@ -8,15 +8,16 @@
     
 }
 
-.latitude-longitude{
+.latitude-longitude-lines{
 
     display: flex;
-    gap: 30px;
+    gap: 20px;
 
 }
 
 .geography-lines{
     display: flex;
+    gap:5px;
 }
 
 .input-mode{
