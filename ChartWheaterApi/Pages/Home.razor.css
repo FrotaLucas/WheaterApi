@@ -1,4 +1,29 @@
-﻿.latitude-longitude{
+﻿.card-box{
+    width: 20%;
+}
+
+.control-box{
+    display: flex;
+    gap: 20px;
+    
+}
+
+.latitude-longitude{
 
     display: flex;
+    gap: 30px;
+
+}
+
+.geography-lines{
+    display: flex;
+}
+
+.input-mode{
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.btn-primary{
+    height: 30px;
 }
