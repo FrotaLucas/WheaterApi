@@ -7,33 +7,33 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+    <h1 class="card-title">Wheater Forecast</h1>
 
-<div>
+    <div class="card-box">
 
-    <h2>Temperature</h2>
+        <div class="control-box">
+            <input @bind="inputCity" class="input-mode" placeholder="enter the city" />
+            <button @onclick="FindTemperature" class="btn-primary">Click</button>
+        </div>
 
-    @* <h3>@response.TimeZone</h3> *@
+        <div class="latitude-longitude-lines">
+            <div class="geography-lines">
+                <label>Latitude</label>
+                <div>@TemperatureService.Data.Latitude</div>
+            </div>
 
-
-
-    <input @bind="inputCity" placeholder="enter the city" />
-    <button @onclick="FindTemperature">Click</button>
-
-
-
-    <div>
-        <label>Latitude</label>
-        <div>@TemperatureService.Data.Latitude</div>
-
-        <label>Longitude</label> <!-- Corrigi label duplicado -->
-        <div>@TemperatureService.Data.Longitude</div>
-
+            <div class="geography-lines">
+                <label>Longitude</label>
+                <div>@TemperatureService.Data.Longitude</div>
+            </div>
+        </div>
     </div>
 
-    @if (TemperatureService.Data?.TemperatureDate?.Temperature != null)
+
+
+
+@if (TemperatureService.Data?.TemperatureDate?.Temperature != null && TemperatureService.Data?.TemperatureDate?.Time != null)
     {
         <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
@@ -43,7 +43,7 @@ Welcome to your new app.
  *@                <ChartTooltipSettings Enable="true" />
             <ChartArea Background="Skyblue"/>
 
-            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Hourly(h)">
+            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
             </ChartPrimaryXAxis>
 
             <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="@($"{minTemp}")" Maximum="50">
@@ -67,17 +67,6 @@ Welcome to your new app.
         </SfChart>
 
     }
-
-
-
-
-
-
-
-</div>
-
-@* 
-<MainComponent/> *@
 
 @code {
     string inputCity = "Berlin";
