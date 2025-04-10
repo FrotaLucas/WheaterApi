@@ -14,7 +14,7 @@ namespace ChartWheaterApi.Services
 
         public ResponseWheater Data { get; set; } = new ResponseWheater();
         
-        public List<ChartData> chartData { get; set; } =  new List<ChartData>();
+        public List<ChartTemperatureData> chartData { get; set; } =  new List<ChartTemperatureData>();
 
 
         public event Action TemperatureChanged;
@@ -33,7 +33,7 @@ namespace ChartWheaterApi.Services
             {
                 for (int i = 0; i < result.WheaterData.Temperatures.Count(); i++) 
                 {
-                    var data = new ChartData()
+                    var data = new ChartTemperatureData()
                     {
                         Temps = result.WheaterData.Temperatures[i],
                         Time = result.WheaterData.Time[i].Split("T")[1]
