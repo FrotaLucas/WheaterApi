@@ -47,9 +47,9 @@ namespace WheaterApi.Services
 
             var response = await getLatitudeAndLongitude(city);
 
-            if( response.results != null && response.results.Count > 0)
+            if( response.Results != null && response.Results.Count > 0)
             {
-                geographyData = response.results[0];
+                geographyData = response.Results[0];
             }
 
 

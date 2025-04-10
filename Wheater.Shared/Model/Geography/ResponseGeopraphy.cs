@@ -5,7 +5,7 @@ namespace Wheater.Shared.Model.Geography
     public class ResponseGeopraphy
     {
         [JsonPropertyName("results")]
-        public List<GeographyData> results { get; set; }
+        public List<GeographyData> Results { get; set; }
 
     }
 }
