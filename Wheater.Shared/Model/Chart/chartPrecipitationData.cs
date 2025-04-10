@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wheater.Shared.Model.Chart
 {
-    internal class chartPrecipitationData
+    public class ChartPrecipitationData
     {
+        public string Time { get; set; } = string.Empty;
+        public double Precipitation { get; set; }
     }
 }
