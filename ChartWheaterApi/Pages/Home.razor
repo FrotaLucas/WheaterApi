@@ -7,8 +7,12 @@
 
 <PageTitle>Home</PageTitle>
 
+@if (!isLoading){
+    <p>Loading ...</p>
+}
 
-    <h1 class="card-title">Wheater Forecast</h1>
+else{
+    <h1 class="card-title">Check the temperature in your town!</h1>
 
     <div class="card-box">
 
@@ -29,28 +33,39 @@
             </div>
         </div>
     </div>
+    @* <div>@TemperatureService.chartData[0].Temps</div>
+ *@
 
-
-
-
-@if (TemperatureService.Data?.TemperatureData?.Temperatures != null && TemperatureService.Data?.TemperatureData?.Time != null)
+    @if (TemperatureService.chartData?.Count > 0)
     {
-        <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+        <ul>
+            @foreach (var item in TemperatureService.chartData)
+            {
+                <li>@item.Time - @item.Temps °C</li>
+            }
+        </ul>
+    }
+
+
+
+    @if (TemperatureService.Data?.TemperatureData?.Temperatures != null && TemperatureService.Data?.TemperatureData?.Time != null)
+    {
+        <SfChart @key="chartGuid" Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
 
 
             @*             It lets you hover over points and see the values being plotted.acho q nao precisa!!!
  *@                <ChartTooltipSettings Enable="true" />
-            <ChartArea Background="Skyblue"/>
+            <ChartArea Background="Skyblue" />
 
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
             </ChartPrimaryXAxis>
 
-            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="@($"{minTemp}")" Maximum="50">
+            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="5" Maximum="50">
             </ChartPrimaryYAxis>
 
             <ChartSeriesCollection>
-                <ChartSeries DataSource="@chartData"
+                <ChartSeries DataSource="@TemperatureService.chartData"
                 Fill="orange"
                 DashArray="10"
                 XName="Time"
@@ -68,15 +83,24 @@
 
     }
 
+
+}
+
 @code {
     string inputCity = "Berlin";
-    public List<ChartData> chartData = new();
-    double minTemp = 0;
+    bool isLoading = false;
+    Guid chartGuid = Guid.NewGuid();
 
-    public class ChartData {
-        public string Time { get; set; }
-        public double Temps { get; set; }
-    }
+    // public List<ChartData> chartData = new();
+    // double minTemp = 0;
+
+    // public class ChartData {
+    //     public string Time { get; set; }
+    //     public double Temps { get; set; }
+    // }
+
+
+
     //private ResponseWheater response = null;
 
     // protected async override void OnInitialized()
@@ -89,10 +113,11 @@
     protected override async Task OnInitializedAsync()
     {
         TemperatureService.TemperatureChanged += StateHasChanged;
+        Console.WriteLine(TemperatureService.chartData.Count());
         await FindTemperature();
     }
 
-
+    //pq nao precisa chamar esse TemperatureChanged???  
     // public void Dispose()
     // {
     //     //ProductService.ProductsChanged -= StateHasChanged;
@@ -104,41 +129,36 @@
         TemperatureService.TemperatureChanged -= StateHasChanged;
     }
 
-    // protected async Task FindTemperature()
-    // {
 
-    //     Console.WriteLine("click event");
-    //     await TemperatureService.UpdateApi("Berlin");
-    //     //response = TemperatureService.Data;
+    // private void BuildChart(){
+    //     if (TemperatureService.Data.TemperatureData.Temperatures != null && TemperatureService.Data.TemperatureData != null)
+    //     {  
+    //         chartData.Clear();
+
+    //         for(int i = 0; i < TemperatureService.Data.TemperatureData.Temperatures.Count(); i++)
+    //         {   
+    //             var data = new ChartData()
+    //                 {
+    //                     Temps = TemperatureService.Data.TemperatureData.Temperatures[i],
+    //                     Time = TemperatureService.Data.TemperatureData.Time[i].Split("T")[1]
+    //                 };
+
+    //             if (TemperatureService.Data.TemperatureData.Temperatures[i] < minTemp)
+    //                 minTemp = -20;
+    //             chartData.Add(data);
+    //         }
+
+
+    //     }
     // }
-
-    private void BuildChart(){
-        if (TemperatureService.Data.TemperatureData.Temperatures != null && TemperatureService.Data.TemperatureData != null)
-        {  
-            chartData.Clear();
-          
-            for(int i = 0; i < TemperatureService.Data.TemperatureData.Temperatures.Count(); i++)
-            {   
-                var data = new ChartData()
-                    {
-                        Temps = TemperatureService.Data.TemperatureData.Temperatures[i],
-                        Time = TemperatureService.Data.TemperatureData.Time[i].Split("T")[1]
-                    };
-
-                if (TemperatureService.Data.TemperatureData.Temperatures[i] < minTemp)
-                    minTemp = -20;
-                chartData.Add(data);
-            }
-            
-
-        }
-    }
 
     protected async Task FindTemperature()
     {
+        isLoading = true;
         Console.WriteLine("event");
         await TemperatureService.UpdateApi(inputCity);
-        BuildChart();
+        chartGuid = Guid.NewGuid();
+        //BuildChart();
         StateHasChanged(); // força renderização. Talvez nao precise disso
 
     }
