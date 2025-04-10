@@ -16,6 +16,7 @@ namespace ChartWheaterApi.Services
         
         public List<ChartData> chartData { get; set; } =  new List<ChartData>();
 
+
         public event Action TemperatureChanged;
 
         public async Task<ResponseWheater> getTemp(string city)
@@ -24,9 +25,25 @@ namespace ChartWheaterApi.Services
             var result = await _httpClient.GetFromJsonAsync<ResponseWheater>($"api/Wheater?city={city}");
             //http://localhost:5000/api/Wheater?city=coroaci
 
-
-
             Data = result;
+
+            chartData.Clear();
+
+            if (result != null)
+            {
+                for (int i = 0; i < result.TemperatureData.Temperatures.Count(); i++) 
+                {
+                    var data = new ChartData()
+                    {
+                        Temps = result.TemperatureData.Temperatures[i],
+                        Time = result.TemperatureData.Time[i].Split("T")[1]
+                    };
+                    chartData.Add(data);
+                }
+            }
+
+
+            //Data = result;
 
             return result;//talvez nao preciso restornar result, pq a atualizacao dos dados eh feito pelo Evento no DOM
         }
