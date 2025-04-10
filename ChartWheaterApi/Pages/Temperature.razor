@@ -36,10 +36,10 @@ else{
     @* <div>@TemperatureService.chartData[0].Temps</div>
  *@
 
-    @if (TemperatureService.chartData?.Count > 0)
+    @if (TemperatureService.chartTemperatureData?.Count > 0)
     {
         <ul>
-            @foreach (var item in TemperatureService.chartData)
+            @foreach (var item in TemperatureService.chartTemperatureData)
             {
                 <li>@item.Time - @item.Temps °C</li>
             }
@@ -65,7 +65,7 @@ else{
             </ChartPrimaryYAxis>
 
             <ChartSeriesCollection>
-                <ChartSeries DataSource="@TemperatureService.chartData"
+                <ChartSeries DataSource="@TemperatureService.chartTemperatureData"
                 Fill="orange"
                 DashArray="10"
                 XName="Time"
@@ -113,7 +113,7 @@ else{
     protected override async Task OnInitializedAsync()
     {
         TemperatureService.TemperatureChanged += StateHasChanged;
-        Console.WriteLine(TemperatureService.chartData.Count());
+        Console.WriteLine(TemperatureService.chartTemperatureData.Count());
         await FindTemperature();
     }
 

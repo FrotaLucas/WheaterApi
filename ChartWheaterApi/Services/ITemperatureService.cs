@@ -13,7 +13,7 @@ namespace ChartWheaterApi.Services
         
         ResponseWheater Data { get; set; }
 
-        List<ChartTemperatureData> chartData { get; set; }
+        List<ChartTemperatureData> chartTemperatureData { get; set; }
 
     }
 }
