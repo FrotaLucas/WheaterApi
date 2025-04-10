@@ -45,11 +45,11 @@ namespace ChartWheaterApi.Services
                     chartTemperatureData.Add(data);
                 }
 
-                for (int i = 0; i < result.WheaterData.Precipitation.Count(); i++) 
+                for (int i = 0; i < result.WheaterData.Precipitations.Count(); i++) 
                 {
                     var data = new ChartPrecipitationData()
                     {
-                        Precipitation = result.WheaterData.Precipitation[i],
+                        Precipitation = result.WheaterData.Precipitations[i],
                         Time = result.WheaterData.Time[i].Split("T")[1]
                     };
                     chartPrecipitationData.Add(data);

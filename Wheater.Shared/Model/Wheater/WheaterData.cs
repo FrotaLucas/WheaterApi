@@ -14,7 +14,7 @@ namespace Wheater.Shared.Model.Wheater
 
         [JsonPropertyName("precipitation_probability")]
         
-        public List<double> Precipitation { get; set; }
+        public List<double> Precipitations { get; set; }
 
 
 
