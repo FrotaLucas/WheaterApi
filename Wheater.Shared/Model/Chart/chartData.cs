@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Wheater.Shared.Model.Chart
 {
-    internal class chartData
+    public class ChartData
     {
+        public string Time { get; set; } = string.Empty;
+        public double Temps { get; set; }
     }
 }
