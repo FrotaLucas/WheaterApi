@@ -15,5 +15,7 @@ namespace ChartWheaterApi.Services
 
         List<ChartTemperatureData> chartTemperatureData { get; set; }
 
+        List<ChartPrecipitationData> chartPrecipitationData { get; set;}
+
     }
 }
