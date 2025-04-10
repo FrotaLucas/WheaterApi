@@ -16,6 +16,8 @@ namespace ChartWheaterApi.Services
         
         public List<ChartTemperatureData> chartTemperatureData { get; set; } =  new List<ChartTemperatureData>();
 
+        public List<ChartPrecipitationData> chartPrecipitationData { get; set; } = new List<ChartPrecipitationData>();
+
 
         public event Action TemperatureChanged;
 
@@ -28,6 +30,8 @@ namespace ChartWheaterApi.Services
             Data = result;
 
             chartTemperatureData.Clear();
+
+            chartPrecipitationData.Clear();
 
             if (result != null)
             {
