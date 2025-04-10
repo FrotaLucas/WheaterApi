@@ -87,7 +87,8 @@ namespace WheaterApi.Services
                 Latitude = responseApi.Latitude,
                 Longitude = responseApi.Longitude,
                 TimeZone = responseApi.TimeZone,
-                TemperatureData = responseApi.TemperatureData,
+                WheaterData = responseApi.WheaterData,
+
                 
             };
 

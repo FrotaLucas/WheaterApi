@@ -12,9 +12,7 @@ namespace Wheater.Shared.Model.Wheater
         public string TimeZone { get; set; } = string.Empty;
 
         [JsonPropertyName("hourly")]
-        public WheaterData TemperatureData { get; set; } = new WheaterData();
-
-
+        public WheaterData WheaterData { get; set; } = new WheaterData();
 
 
     }

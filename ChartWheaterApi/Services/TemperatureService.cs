@@ -31,12 +31,12 @@ namespace ChartWheaterApi.Services
 
             if (result != null)
             {
-                for (int i = 0; i < result.TemperatureData.Temperatures.Count(); i++) 
+                for (int i = 0; i < result.WheaterData.Temperatures.Count(); i++) 
                 {
                     var data = new ChartData()
                     {
-                        Temps = result.TemperatureData.Temperatures[i],
-                        Time = result.TemperatureData.Time[i].Split("T")[1]
+                        Temps = result.WheaterData.Temperatures[i],
+                        Time = result.WheaterData.Time[i].Split("T")[1]
                     };
                     chartData.Add(data);
                 }

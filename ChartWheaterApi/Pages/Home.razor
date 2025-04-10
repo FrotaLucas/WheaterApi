@@ -48,7 +48,7 @@ else{
 
 
 
-    @if (TemperatureService.Data?.TemperatureData?.Temperatures != null && TemperatureService.Data?.TemperatureData?.Time != null)
+    @if (TemperatureService.Data?.WheaterData?.Temperatures != null && TemperatureService.Data?.WheaterData?.Time != null)
     {
         <SfChart @key="chartGuid" Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
