@@ -31,7 +31,7 @@ namespace ChartWheaterApi.Services
 
             chartTemperatureData.Clear();
 
-            chartPrecipitationData.Clear();
+            //chartPrecipitationData.Clear();
 
             if (result != null)
             {
@@ -45,7 +45,7 @@ namespace ChartWheaterApi.Services
                     chartTemperatureData.Add(data);
                 }
 
-                for (int i = 0; i < result.WheaterData.Precipitations.Count(); i++) 
+                for (int i = 0; i < result.WheaterData.Precipitations.Count(); i++)
                 {
                     var data = new ChartPrecipitationData()
                     {
@@ -57,7 +57,7 @@ namespace ChartWheaterApi.Services
             }
 
 
-            //Data = result;
+            Data = result;
 
             return result;//talvez nao preciso restornar result, pq a atualizacao dos dados eh feito pelo Evento no DOM
         }

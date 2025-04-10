@@ -33,24 +33,23 @@ else{
             </div>
         </div>
     </div>
-    @* <div>@TemperatureService.chartData[0].Temps</div>
- *@
+    @* <div>@TemperatureService.chartData[0].Temps</div>*@
 
-    @if (TemperatureService.chartTemperatureData?.Count > 0)
+    @* @if (TemperatureService.chartPrecipitationData?.Count > 0)
     {
         <ul>
-            @foreach (var item in TemperatureService.chartTemperatureData)
+            @foreach (var item in TemperatureService.chartPrecipitationData)
             {
-                <li>@item.Time - @item.Temps °C</li>
+                <li>@item.Time - @item.Precipitation %</li>
             }
         </ul>
-    }
+    } *@
 
 
 
     @if (TemperatureService.Data?.WheaterData?.Temperatures != null && TemperatureService.Data?.WheaterData?.Time != null)
     {
-        <SfChart @key="chartGuid" Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+        <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
 
 
@@ -89,7 +88,7 @@ else{
 @code {
     string inputCity = "Berlin";
     bool isLoading = false;
-    Guid chartGuid = Guid.NewGuid();
+    // Guid chartGuid = Guid.NewGuid();
 
     // public List<ChartData> chartData = new();
     // double minTemp = 0;
@@ -157,7 +156,7 @@ else{
         isLoading = true;
         Console.WriteLine("event");
         await TemperatureService.UpdateApi(inputCity);
-        chartGuid = Guid.NewGuid();
+        // chartGuid = Guid.NewGuid();
         //BuildChart();
         StateHasChanged(); // força renderização. Talvez nao precise disso
 
