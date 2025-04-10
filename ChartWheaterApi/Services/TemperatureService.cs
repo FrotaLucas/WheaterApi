@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using Wheater.Shared.Model.Chart;
 using Wheater.Shared.Model.Wheater;
 
 namespace ChartWheaterApi.Services
@@ -12,13 +13,18 @@ namespace ChartWheaterApi.Services
         }
 
         public ResponseWheater Data { get; set; } = new ResponseWheater();
+        
+        public List<ChartData> chartData { get; set; } =  new List<ChartData>();
 
         public event Action TemperatureChanged;
 
         public async Task<ResponseWheater> getTemp(string city)
         {
+            
             var result = await _httpClient.GetFromJsonAsync<ResponseWheater>($"api/Wheater?city={city}");
             //http://localhost:5000/api/Wheater?city=coroaci
+
+
 
             Data = result;
 
