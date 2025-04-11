@@ -29,12 +29,12 @@ else{
             </div>
         </div>
     </div>
-    @* <div>@TemperatureService.chartData[0].Temps</div>*@
+    @* <div>@WheaterService.chartData[0].Temps</div>*@
 
-    @* @if (TemperatureService.chartPrecipitationData?.Count > 0)
+    @* @if (WheaterService.chartPrecipitationData?.Count > 0)
     {
         <ul>
-            @foreach (var item in TemperatureService.chartPrecipitationData)
+            @foreach (var item in WheaterService.chartPrecipitationData)
             {
                 <li>@item.Time - @item.Precipitation %</li>
             }
@@ -56,7 +56,7 @@ else{
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
             </ChartPrimaryXAxis>
 
-            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="0" Maximum="50">
+            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Temperature (°C)" Minimum="@WheaterService.minTemp" Maximum="50">
             </ChartPrimaryYAxis>
 
             <ChartSeriesCollection>
@@ -102,13 +102,13 @@ else{
     // {
     //     await FindTemperature();
     //     //ProductService.ProductsChanged += StateHasChanged;
-    //     TemperatureService.TemperatureChanged += StateHasChanged;
+    //     WheaterService.TemperatureChanged += StateHasChanged;
     // }
 
     protected override async Task OnInitializedAsync()
     {
-        TemperatureService.TemperatureChanged += StateHasChanged;
-        Console.WriteLine(TemperatureService.chartTemperatureData.Count());
+        WheaterService.TemperatureChanged += StateHasChanged;
+        Console.WriteLine(WheaterService.chartTemperatureData.Count());
         await FindTemperature();
     }
 
@@ -116,29 +116,29 @@ else{
     // public void Dispose()
     // {
     //     //ProductService.ProductsChanged -= StateHasChanged;
-    //     TemperatureService.TemperatureChanged -= StateHasChanged;
+    //     WheaterService.TemperatureChanged -= StateHasChanged;
     // }
 
     public void Dispose()
     {
-        TemperatureService.TemperatureChanged -= StateHasChanged;
+        WheaterService.TemperatureChanged -= StateHasChanged;
     }
 
 
     // private void BuildChart(){
-    //     if (TemperatureService.Data.TemperatureData.Temperatures != null && TemperatureService.Data.TemperatureData != null)
+    //     if (WheaterService.Data.TemperatureData.Temperatures != null && WheaterService.Data.TemperatureData != null)
     //     {  
     //         chartData.Clear();
 
-    //         for(int i = 0; i < TemperatureService.Data.TemperatureData.Temperatures.Count(); i++)
+    //         for(int i = 0; i < WheaterService.Data.TemperatureData.Temperatures.Count(); i++)
     //         {   
     //             var data = new ChartData()
     //                 {
-    //                     Temps = TemperatureService.Data.TemperatureData.Temperatures[i],
-    //                     Time = TemperatureService.Data.TemperatureData.Time[i].Split("T")[1]
+    //                     Temps = WheaterService.Data.TemperatureData.Temperatures[i],
+    //                     Time = WheaterService.Data.TemperatureData.Time[i].Split("T")[1]
     //                 };
 
-    //             if (TemperatureService.Data.TemperatureData.Temperatures[i] < minTemp)
+    //             if (WheaterService.Data.TemperatureData.Temperatures[i] < minTemp)
     //                 minTemp = -20;
     //             chartData.Add(data);
     //         }
@@ -151,7 +151,7 @@ else{
     {
         isLoading = true;
         Console.WriteLine("event");
-        await TemperatureService.UpdateApi(inputCity);
+        await WheaterService.UpdateApi(inputCity);
         // chartGuid = Guid.NewGuid();
         //BuildChart();
         StateHasChanged(); // força renderização. Talvez nao precise disso
