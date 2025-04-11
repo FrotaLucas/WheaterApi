@@ -3,11 +3,13 @@
 
 <PageTitle>Temperature</PageTitle>
 
-@if (!isLoading){
+@if (!isLoading)
+{
     <p>Loading ...</p>
 }
 
-else{
+else
+{
     <h1 class="title">Check the temperature in your town today 🌡️🧣</h1>
 
     <div class="card-box">
@@ -29,28 +31,13 @@ else{
             </div>
         </div>
     </div>
-    @* <div>@WheaterService.chartData[0].Temps</div>*@
-
-    @* @if (WheaterService.chartPrecipitationData?.Count > 0)
-    {
-        <ul>
-            @foreach (var item in WheaterService.chartPrecipitationData)
-            {
-                <li>@item.Time - @item.Precipitation %</li>
-            }
-        </ul>
-    } *@
-
 
 
     @if (WheaterService.Data?.WheaterData?.Temperatures != null && WheaterService.Data?.WheaterData?.Time != null)
     {
         <SfChart Title="@($" {inputCity}, {WheaterService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
-
-
-            @*             It lets you hover over points and see the values being plotted.acho q nao precisa!!!
- *@                <ChartTooltipSettings Enable="true" />
+            <ChartTooltipSettings Enable="true" />
             <ChartArea Background="AliceBlue" />
 
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
@@ -61,12 +48,12 @@ else{
 
             <ChartSeriesCollection>
                 <ChartSeries DataSource="@WheaterService.chartTemperatureData"
-                Fill="orange"
-                DashArray="10"
-                XName="Time"
-                YName="Temps"
-                Type="ChartSeriesType.Line"
-                Width="2">
+                             Fill="orange"
+                             DashArray="10"
+                             XName="Time"
+                             YName="Temps"
+                             Type="ChartSeriesType.Line"
+                             Width="2">
                     <ChartMarker Visible="true" Shape="ChartShape.Circle" Width="10" Height="10">
                         <ChartMarkerBorder Width="2" Color="black"></ChartMarkerBorder>
                         <ChartDataLabel Visible="true"></ChartDataLabel>
@@ -84,27 +71,7 @@ else{
 @code {
     string inputCity = "Berlin";
     bool isLoading = false;
-    // Guid chartGuid = Guid.NewGuid();
-
-    // public List<ChartData> chartData = new();
-    // double minTemp = 0;
-
-    // public class ChartData {
-    //     public string Time { get; set; }
-    //     public double Temps { get; set; }
-    // }
-
-
-
-    //private ResponseWheater response = null;
-
-    // protected async override void OnInitialized()
-    // {
-    //     await FindTemperature();
-    //     //ProductService.ProductsChanged += StateHasChanged;
-    //     WheaterService.TemperatureChanged += StateHasChanged;
-    // }
-
+  
     protected override async Task OnInitializedAsync()
     {
         WheaterService.TemperatureChanged += StateHasChanged;
@@ -112,49 +79,18 @@ else{
         await FindTemperature();
     }
 
-    //pq nao precisa chamar esse TemperatureChanged???  
-    // public void Dispose()
-    // {
-    //     //ProductService.ProductsChanged -= StateHasChanged;
-    //     WheaterService.TemperatureChanged -= StateHasChanged;
-    // }
-
     public void Dispose()
     {
         WheaterService.TemperatureChanged -= StateHasChanged;
     }
 
 
-    // private void BuildChart(){
-    //     if (WheaterService.Data.TemperatureData.Temperatures != null && WheaterService.Data.TemperatureData != null)
-    //     {  
-    //         chartData.Clear();
-
-    //         for(int i = 0; i < WheaterService.Data.TemperatureData.Temperatures.Count(); i++)
-    //         {   
-    //             var data = new ChartData()
-    //                 {
-    //                     Temps = WheaterService.Data.TemperatureData.Temperatures[i],
-    //                     Time = WheaterService.Data.TemperatureData.Time[i].Split("T")[1]
-    //                 };
-
-    //             if (WheaterService.Data.TemperatureData.Temperatures[i] < minTemp)
-    //                 minTemp = -20;
-    //             chartData.Add(data);
-    //         }
-
-
-    //     }
-    // }
-
     protected async Task FindTemperature()
     {
         isLoading = true;
         Console.WriteLine("event");
         await WheaterService.UpdateApi(inputCity);
-        // chartGuid = Guid.NewGuid();
-        //BuildChart();
-        StateHasChanged(); // força renderização. Talvez nao precise disso
+        StateHasChanged();
 
     }
 

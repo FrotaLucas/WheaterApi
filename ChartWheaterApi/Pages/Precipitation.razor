@@ -1,10 +1,6 @@
 ﻿@page "/precipitation"
 @inject IWheaterService WheaterService
 
-
-@* Why there's no browser JavaScript logs for your Console.WriteLine() ?
-    In Blazor Server, code runs on the server, not the browser. *@
-
 <PageTitle>Precipitation</PageTitle>
 
 @if (!isLoading)
@@ -46,7 +42,7 @@ else
 
             @*             It lets you hover over points and see the values being plotted.acho q nao precisa!!!
  *@                <ChartTooltipSettings Enable="true" />
-    
+
 
             <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
             </ChartPrimaryXAxis>
@@ -79,25 +75,6 @@ else
     bool isLoading = false;
     Guid chartGuid = Guid.NewGuid();
 
-    // public List<ChartData> chartData = new();
-    // double minTemp = 0;
-
-    // public class ChartData {
-    //     public string Time { get; set; }
-    //     public double Temps { get; set; }
-    // }
-
-
-
-    //private ResponseWheater response = null;
-
-    // protected async override void OnInitialized()
-    // {
-    //     await FindTemperature();
-    //     //ProductService.ProductsChanged += StateHasChanged;
-    //     TemperatureService.TemperatureChanged += StateHasChanged;
-    // }
-
     protected override async Task OnInitializedAsync()
     {
         WheaterService.TemperatureChanged += StateHasChanged;
@@ -105,40 +82,11 @@ else
         await FindTemperature();
     }
 
-    //pq nao precisa chamar esse TemperatureChanged???
-    // public void Dispose()
-    // {
-    //     //ProductService.ProductsChanged -= StateHasChanged;
-    //     TemperatureService.TemperatureChanged -= StateHasChanged;
-    // }
-
     public void Dispose()
     {
         WheaterService.TemperatureChanged -= StateHasChanged;
     }
 
-
-    // private void BuildChart(){
-    //     if (WheaterService.Data.TemperatureData.Temperatures != null && WheaterService.Data.TemperatureData != null)
-    //     {
-    //         chartData.Clear();
-
-    //         for(int i = 0; i < WheaterService.Data.TemperatureData.Temperatures.Count(); i++)
-    //         {
-    //             var data = new ChartData()
-    //                 {
-    //                     Temps = WheaterService.Data.TemperatureData.Temperatures[i],
-    //                     Time = WheaterService.Data.TemperatureData.Time[i].Split("T")[1]
-    //                 };
-
-    //             if (WheaterService.Data.TemperatureData.Temperatures[i] < minTemp)
-    //                 minTemp = -20;
-    //             chartData.Add(data);
-    //         }
-
-
-    //     }
-    // }
 
     protected async Task FindTemperature()
     {
@@ -146,8 +94,7 @@ else
         Console.WriteLine("event");
         await WheaterService.UpdateApi(inputCity);
         chartGuid = Guid.NewGuid();
-        //BuildChart();
-        StateHasChanged(); // força renderização. Talvez nao precise disso
+        StateHasChanged();
 
     }
 
