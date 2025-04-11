@@ -1,18 +1,155 @@
 ﻿@page "/precipitation"
+@inject ITemperatureService TemperatureService
 
-<PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+@* Why there's no browser JavaScript logs for your Console.WriteLine() ?
+    In Blazor Server, code runs on the server, not the browser. *@
 
-<p role="status">Current count: @currentCount</p>
+<PageTitle>Home</PageTitle>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@if (!isLoading)
+{
+    <p>Loading ...</p>
+}
+
+else
+{
+    <h1 class="card-title">See today’s rain forecast for your area ☔ 💦</h1>
+
+    <div class="card-box">
+
+        <div class="control-box">
+            <input @bind="inputCity" class="input-mode" placeholder="enter the city" />
+            <button @onclick="FindTemperature" class="btn-primary">Click</button>
+        </div>
+
+        <div class="latitude-longitude-lines">
+            <div class="geography-lines">
+                <label>Latitude</label>
+                <div>@TemperatureService.Data.Latitude</div>
+            </div>
+
+            <div class="geography-lines">
+                <label>Longitude</label>
+                <div>@TemperatureService.Data.Longitude</div>
+            </div>
+        </div>
+    </div>
+    @* <div>@TemperatureService.chartData[0].Temps</div>*@
+
+
+    @if (TemperatureService.Data?.WheaterData?.Temperatures != null && TemperatureService.Data?.WheaterData?.Time != null)
+    {
+        <SfChart ID="chartGuid" Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+
+
+
+            @*             It lets you hover over points and see the values being plotted.acho q nao precisa!!!
+ *@                <ChartTooltipSettings Enable="true" />
+         @*    <ChartArea Background= "gray" /> *@
+
+            <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Time(h)">
+            </ChartPrimaryXAxis>
+
+            <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Precipitation (%)" Minimum="0" Maximum="100">
+            </ChartPrimaryYAxis>
+
+            <ChartSeriesCollection>
+                <ChartSeries DataSource="@TemperatureService.chartPrecipitationData"
+                             XName="Time"
+                             YName="Precipitation"
+                             Type="ChartSeriesType.Area"
+                             Width="2">
+                  @*   <ChartMarker Visible="true" Shape="ChartShape.Circle" Width="10" Height="10">
+                        <ChartMarkerBorder Width="2" Color="black"></ChartMarkerBorder>
+                        <ChartDataLabel Visible="true"></ChartDataLabel>
+                    </ChartMarker> *@
+
+                </ChartSeries>
+            </ChartSeriesCollection>
+        </SfChart>
+
+    }
+
+
+}
 
 @code {
-    private int currentCount = 0;
+    string inputCity = "Rio de Janeiro";
+    bool isLoading = false;
+    Guid chartGuid = Guid.NewGuid();
 
-    private void IncrementCount()
+    // public List<ChartData> chartData = new();
+    // double minTemp = 0;
+
+    // public class ChartData {
+    //     public string Time { get; set; }
+    //     public double Temps { get; set; }
+    // }
+
+
+
+    //private ResponseWheater response = null;
+
+    // protected async override void OnInitialized()
+    // {
+    //     await FindTemperature();
+    //     //ProductService.ProductsChanged += StateHasChanged;
+    //     TemperatureService.TemperatureChanged += StateHasChanged;
+    // }
+
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        TemperatureService.TemperatureChanged += StateHasChanged;
+        Console.WriteLine(TemperatureService.chartTemperatureData.Count());
+        await FindTemperature();
     }
+
+    //pq nao precisa chamar esse TemperatureChanged???
+    // public void Dispose()
+    // {
+    //     //ProductService.ProductsChanged -= StateHasChanged;
+    //     TemperatureService.TemperatureChanged -= StateHasChanged;
+    // }
+
+    public void Dispose()
+    {
+        TemperatureService.TemperatureChanged -= StateHasChanged;
+    }
+
+
+    // private void BuildChart(){
+    //     if (TemperatureService.Data.TemperatureData.Temperatures != null && TemperatureService.Data.TemperatureData != null)
+    //     {
+    //         chartData.Clear();
+
+    //         for(int i = 0; i < TemperatureService.Data.TemperatureData.Temperatures.Count(); i++)
+    //         {
+    //             var data = new ChartData()
+    //                 {
+    //                     Temps = TemperatureService.Data.TemperatureData.Temperatures[i],
+    //                     Time = TemperatureService.Data.TemperatureData.Time[i].Split("T")[1]
+    //                 };
+
+    //             if (TemperatureService.Data.TemperatureData.Temperatures[i] < minTemp)
+    //                 minTemp = -20;
+    //             chartData.Add(data);
+    //         }
+
+
+    //     }
+    // }
+
+    protected async Task FindTemperature()
+    {
+        isLoading = true;
+        Console.WriteLine("event");
+        await TemperatureService.UpdateApi(inputCity);
+        chartGuid = Guid.NewGuid();
+        //BuildChart();
+        StateHasChanged(); // força renderização. Talvez nao precise disso
+
+    }
+
+
 }
