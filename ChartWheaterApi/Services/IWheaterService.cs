@@ -17,5 +17,7 @@ namespace ChartWheaterApi.Services
 
         List<ChartPrecipitationData> chartPrecipitationData { get; set;}
 
+        Double minTemp { get; set; } 
+
     }
 }

@@ -18,6 +18,7 @@ namespace ChartWheaterApi.Services
 
         public List<ChartPrecipitationData> chartPrecipitationData { get; set; } = new List<ChartPrecipitationData>();
 
+        public Double minTemp { get; set; } = 0;
 
         public event Action TemperatureChanged;
 
@@ -42,6 +43,10 @@ namespace ChartWheaterApi.Services
                         Temps = result.WheaterData.Temperatures[i],
                         Time = result.WheaterData.Time[i].Split("T")[1]
                     };
+
+                    if(data.Temps < minTemp)
+                        minTemp = data.Temps;
+
                     chartTemperatureData.Add(data);
                 }
 
