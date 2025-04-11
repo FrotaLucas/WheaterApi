@@ -8,10 +8,11 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
+
+var Mykey = builder.Configuration.GetConnectionString("MySyncfusionLisence");
+
 builder.Services.AddSyncfusionBlazor();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(
-    "MzgwNzMyMkAzMjM5MmUzMDJlMzAzYjMyMzkzYmNiRFkvMnd4Yjh1T2hHWkZtcHR2UldyY1R4cDh5WkFKNStOdEtwS2hmT1U9"
-);
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Mykey);
 
 //investigar pq essa 1 opcao nao eh valida. Esta igual projeto Ecommerce
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
