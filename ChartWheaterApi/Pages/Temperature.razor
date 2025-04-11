@@ -1,11 +1,7 @@
-﻿@page "/"
+﻿@page "/temperature"
 @inject ITemperatureService TemperatureService
 
-
-@* Why there's no browser JavaScript logs for your Console.WriteLine() ?
-    In Blazor Server, code runs on the server, not the browser. *@
-
-<PageTitle>Home</PageTitle>
+<PageTitle>Temperature</PageTitle>
 
 @if (!isLoading){
     <p>Loading ...</p>
