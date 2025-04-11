@@ -31,7 +31,7 @@ namespace ChartWheaterApi.Services
 
             chartTemperatureData.Clear();
 
-            //chartPrecipitationData.Clear();
+            chartPrecipitationData.Clear();
 
             if (result != null)
             {
