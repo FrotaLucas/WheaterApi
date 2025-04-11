@@ -3,7 +3,7 @@ using Wheater.Shared.Model.Wheater;
 
 namespace ChartWheaterApi.Services
 {
-    public interface ITemperatureService
+    public interface IWheaterService
     {
         Task UpdateApi(string city = "Berlin");
         

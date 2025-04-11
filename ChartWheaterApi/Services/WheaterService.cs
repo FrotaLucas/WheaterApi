@@ -4,10 +4,10 @@ using Wheater.Shared.Model.Wheater;
 
 namespace ChartWheaterApi.Services
 {
-    public class TemperatureService : ITemperatureService
+    public class WheaterService : IWheaterService
     {
         private readonly HttpClient _httpClient;
-        public TemperatureService(HttpClient httpClient)
+        public WheaterService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
