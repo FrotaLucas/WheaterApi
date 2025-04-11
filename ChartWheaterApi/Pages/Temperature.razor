@@ -20,12 +20,12 @@ else{
         <div class="latitude-longitude-lines">
             <div class="geography-lines">
                 <label>Latitude</label>
-                <div>@TemperatureService.Data.Latitude</div>
+                <div>@WheaterService.Data.Latitude</div>
             </div>
 
             <div class="geography-lines">
                 <label>Longitude</label>
-                <div>@TemperatureService.Data.Longitude</div>
+                <div>@WheaterService.Data.Longitude</div>
             </div>
         </div>
     </div>
@@ -43,9 +43,9 @@ else{
 
 
 
-    @if (TemperatureService.Data?.WheaterData?.Temperatures != null && TemperatureService.Data?.WheaterData?.Time != null)
+    @if (WheaterService.Data?.WheaterData?.Temperatures != null && WheaterService.Data?.WheaterData?.Time != null)
     {
-        <SfChart Title="@($" {inputCity}, {TemperatureService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
+        <SfChart Title="@($" {inputCity}, {WheaterService.Data.TimeZone.Split("/")[0]}")" Width="1200px">
 
 
 
@@ -60,7 +60,7 @@ else{
             </ChartPrimaryYAxis>
 
             <ChartSeriesCollection>
-                <ChartSeries DataSource="@TemperatureService.chartTemperatureData"
+                <ChartSeries DataSource="@WheaterService.chartTemperatureData"
                 Fill="orange"
                 DashArray="10"
                 XName="Time"
