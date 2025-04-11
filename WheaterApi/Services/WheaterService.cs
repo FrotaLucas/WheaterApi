@@ -16,18 +16,8 @@ namespace WheaterApi.Services
             _cache = cache;
         }
 
-        //api opencage data
-        //latitude e longitude 
-        //https://api.opencagedata.com/geocode/v1/json?q=-22%2C+-43&key=42100b764202470b9a1ca4db79301088
-
-        //Forward Geocoding
-        //city name
-        //https://api.opencagedata.com/geocode/v1/json?q=RioDeJaneiro&key=42100b764202470b9a1ca4db79301088
-
         public async Task<ResponseGeopraphy> getLatitudeAndLongitude(string city)
         {
-            //remove any simbol or circumflex accent but brings erros from api response
-            //city = HttpUtility.UrlDecode(city.Trim().ToLower().Replace(" ", ""));
             city = city.Trim().ToLower();
 
             string uri = $"https://api.opencagedata.com/geocode/v1/json?q={city}&key=42100b764202470b9a1ca4db79301088";
@@ -62,11 +52,8 @@ namespace WheaterApi.Services
 
 
             string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,precipitation_probability&timezone={continent}%2F{cityReference}&forecast_days=1";
-        //"https://api.open-meteo.com/v1/forecast?latitude=48.1374&longitude=11.5755&hourly=temperature_2m&timezone=Europe%2FBerlin&forecast_days=1"
-
-
-        https://api.open-meteo.com/v1/forecast?latitude=-23.1374&longitude=-43.5755&daily=sunrise,sunset&hourly=temperature_2m,precipitation_probability&timezone=America%2FSao_Paulo&forecast_days=1
             string cacheKey = $"{latitude}-{longitude}";
+
             var cacheData = await _cache.GetStringAsync(cacheKey) ;
 
             if (!string.IsNullOrEmpty(cacheData))
