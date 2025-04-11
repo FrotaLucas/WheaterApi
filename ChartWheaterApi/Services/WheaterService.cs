@@ -26,8 +26,7 @@ namespace ChartWheaterApi.Services
         {
             
             var result = await _httpClient.GetFromJsonAsync<ResponseWheater>($"api/Wheater?city={city}");
-            //http://localhost:5000/api/Wheater?city=coroaci
-
+           
             Data = result;
 
             chartTemperatureData.Clear();
@@ -64,23 +63,12 @@ namespace ChartWheaterApi.Services
 
             Data = result;
 
-            return result;//talvez nao preciso restornar result, pq a atualizacao dos dados eh feito pelo Evento no DOM
+            return result;
         }
+
         public async Task UpdateApi(string city)
         {
             var result = await getTemp(city);
-
-            //var response = new ResponseWheater()
-            //{
-            //    Latitude = result.Latitude,
-            //    Longitude = result.Longitude,
-            //    TimeZone = result.TimeZone,
-            //    TemperatureDate = result.TemperatureDate,
-            //    //TemperatureDate = new WheaterData()
-            //    //{
-            //    //    Temperature = [25,23,29,4,23,23]
-            //    //}
-            //};
 
             TemperatureChanged.Invoke();
         }
