@@ -21,22 +21,23 @@ Monatar esboco da aquitetura com imagem
 
 # Contextualizando
 
-This project is a Ecommerce application built for selling E-books, Blue-Ray, Stream, VHS and videgames online, allowing users to purchase items using credit card, PayPal, or direct bank transfer.
-
+???
 ---
 
-documentation for API
+# documentation for API
 
 [Link Api open-meteo](https://open-meteo.com/en/docs?latitude=48.1374&longitude=11.5755&timezone=Europe%2FBerlin&daily=sunrise,sunset&forecast_days=1)
 
 [Link Api open cage data / describe latitude and longitude ](https://opencagedata.com/api#quickstart)
 
 
-Images:
+Images Precipitation:
+![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
 
-Temperature
 
-Image 2
+Image Precipitation
+![image](https://github.com/user-attachments/assets/1c519eb8-a186-400c-861a-912cde860f8d)
+
 
 
 Thank you for reading my project
