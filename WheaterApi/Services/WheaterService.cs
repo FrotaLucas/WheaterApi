@@ -67,22 +67,22 @@ namespace WheaterApi.Services
 
         https://api.open-meteo.com/v1/forecast?latitude=-23.1374&longitude=-43.5755&daily=sunrise,sunset&hourly=temperature_2m,precipitation_probability&timezone=America%2FSao_Paulo&forecast_days=1
             string cacheKey = $"{latitude}-{longitude}";
-            //var cacheData = await _cache.GetStringAsync(cacheKey) ;
+            var cacheData = await _cache.GetStringAsync(cacheKey) ;
 
-            //if(!string.IsNullOrEmpty(cacheData))
-            //{
-            //    //transform Byte data format into json ?
-            //    var json = JsonSerializer.Deserialize<WheaterModel>(cacheData) ;
-            //    return json;
-            //}
+            if (!string.IsNullOrEmpty(cacheData))
+            {
+                //transform Byte data format into json ?
+                var json = JsonSerializer.Deserialize<ResponseWheater>(cacheData);
+                return json;
+            }
 
             var responseApi = await _httpClient.GetFromJsonAsync<ResponseWheater>(url);
 
             //set cache for 10 min
-            //var options = new DistributedCacheEntryOptions()
-            //    .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
+            var options = new DistributedCacheEntryOptions()
+                .SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
 
-            //_cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(responseApi), options);
+            _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(responseApi), options);
 
             return new ResponseWheater
             {
