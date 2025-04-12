@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartWheaterApi", "ChartWhe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wheater.Shared", "Wheater.Shared\Wheater.Shared.csproj", "{84903F4F-1CB5-43CF-9619-8880FB6152EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nginxx", "Nginxx", "{2F825279-4873-48D5-94F4-81824AB2A240}"
-	ProjectSection(SolutionItems) = preProject
-		nginx.conf = nginx.conf
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
