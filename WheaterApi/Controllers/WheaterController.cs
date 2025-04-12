@@ -14,7 +14,7 @@ namespace WheaterApi.Controllers
             _wheaterService = wheaterService;
         }
 
-        //route https://localhost:61890/api/Wheater?latitude=20&longitude=30&timeZone=Berlin
+        //route http://localhost:5000/api/Wheater?city=Berlin
 
         [HttpGet]
         public async Task<IActionResult> getWheaterData([FromQuery] string city )
