@@ -14,9 +14,19 @@ var Mykey = builder.Configuration.GetConnectionString("MySyncfusionLisence");
 builder.Services.AddSyncfusionBlazor();
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Mykey);
 
+string baseApiUrl;
+
+#if DEBUG
+// Ambiente local (sem Docker)
+baseApiUrl = "http://localhost:5000/";
+#else
+    // Ambiente com Docker, usando nginx como proxy. Redireciona para o nginx resollver a rota
+    baseApiUrl = "http://nginx/";
+#endif
+
 builder.Services.AddHttpClient<IWheaterService, WheaterService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5000/");
+    client.BaseAddress = new Uri(baseApiUrl);
 });
 
 builder.Services.AddOptions();
