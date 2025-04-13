@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   redis:
     image: redis
@@ -9,7 +7,8 @@ services:
 
   backend:
     build:
-      context: ./WheaterApi
+      context: .
+      dockerfile: WheaterApi/Dockerfile
     container_name: wheater-backend
     ports:
       - "5000:80"
@@ -20,7 +19,8 @@ services:
 
   frontend:
     build:
-      context: ./ChartWheaterApi
+      context: .
+      dockerfile: ChartWheaterApi/Dockerfile
     container_name: wheater-frontend
     environment:
       - API_BASE_URL=http://localhost/api/  # nginx vai encaminhar para o backend
