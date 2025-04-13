@@ -36,10 +36,22 @@ Monatar esboco da aquitetura com imagem
 Images Precipitation:
 ![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
 
+Cheche temperature in Rio
+![image](https://github.com/user-attachments/assets/79c1ac7b-30bf-434e-9276-fd5254ccf0c6)
 
 Image Precipitation
 ![image](https://github.com/user-attachments/assets/1c519eb8-a186-400c-861a-912cde860f8d)
 
 
+
+Image : you can also check a adress instead of city
+![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
+
+and temperature
+![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
+
+
+most cold city in the world
+![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
 
 Thank you for reading my project
