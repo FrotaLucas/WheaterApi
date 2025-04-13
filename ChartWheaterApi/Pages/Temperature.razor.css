@@ -3,13 +3,18 @@
 }
 
 .card-box {
-    width: 20%;
+    width: 40%;
     margin-bottom: 2.5rem;
 }
+
 .control-box{
     display: flex;
     gap: 20px;
     
+}
+
+.input-mode {
+    width: 400px;
 }
 
 .latitude-longitude-lines{
