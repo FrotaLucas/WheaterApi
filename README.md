@@ -50,6 +50,10 @@ Image : you can also check a adress instead of city
 and temperature
 ![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
 
+
+most cold city in the world
+![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
+
 # Project Structure
 
 /WheaterSolutionFolder/
@@ -65,9 +69,4 @@ and temperature
 └── nginx/
     └── nginx-reverse-proxy.conf
 
-
-
-most cold city in the world
-![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
-
-Thank you for reading my project
+Acknowledgments
