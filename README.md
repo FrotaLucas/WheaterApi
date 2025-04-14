@@ -56,17 +56,11 @@ most cold city in the world
 
 # Project Structure
 
-/WheaterSolutionFolder/
-├── docker-compose.yml
-├── WheaterApi/
-│   ├── Dockerfile (backend)
-│   └── WheaterApi.csproj
-├── ChartWheaterApi/
-│   ├── Dockerfile (frontend)
-│   └── ChartWheaterApi.csproj
-├── Wheater.Shared/
-│   └── Wheater.Shared.csproj
-└── nginx/
-    └── nginx-reverse-proxy.conf
+# Project Structure
+workshop-full-stack/  
+├── backend/           # Spring Boot app (Dockerized)  
+├── frontend/          # Angular app (Dockerized)  
+├── docker-compose.yml # Orchestrates all services  
+└── README.md 
 
 Acknowledgments
