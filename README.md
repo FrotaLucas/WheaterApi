@@ -39,7 +39,7 @@ You can also use the adress instead of city to get more accuracy ;)
 ![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
 
 
-and You can check every city in the world !!
+and you can even check every city in the world !!
 
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
 
@@ -61,7 +61,7 @@ and You can check every city in the world !!
 - **Redis** An in-memory data structure store used as a caching layer to reduce API calls and improve response time.
 - **Nginx**  Acts as a reverse proxy and load balancer, managing incoming requests and routing them efficiently to the appropriate service (frontend or backend).
 
-# Arquitetura do Projeto
+# Project Architecture
 
 ![image](https://github.com/user-attachments/assets/e3dc7e71-ea87-4eb2-920d-6a49ccd2516d)
 
