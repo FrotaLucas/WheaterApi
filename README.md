@@ -50,6 +50,22 @@ Image : you can also check a adress instead of city
 and temperature
 ![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
 
+# Project Structure
+
+/WheaterSolutionFolder/
+├── docker-compose.yml
+├── WheaterApi/
+│   ├── Dockerfile (backend)
+│   └── WheaterApi.csproj
+├── ChartWheaterApi/
+│   ├── Dockerfile (frontend)
+│   └── ChartWheaterApi.csproj
+├── Wheater.Shared/
+│   └── Wheater.Shared.csproj
+└── nginx/
+    └── nginx-reverse-proxy.conf
+
+
 
 most cold city in the world
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
