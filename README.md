@@ -2,7 +2,6 @@
 
 This project arose after my participation in a workshop on Docker and application containerization, offered by [Itestra](https://itestra.com/). During the event, I was able to realize the potential of these technologies in software development and decided to apply the knowledge gained in my own project.
 
-Technologies and Architecture
 In addition to Docker and Docker Compose, I used two public APIs to obtain:
 
 1. Geographic coordinates (latitude and longitude) of a city or address.
