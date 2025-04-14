@@ -38,22 +38,18 @@ You can also use the adress instead of city to get more accuracy ;)
 
 ![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
 
-Image Temperature: you can also use the adress instead of city to get more accuracy
-![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
 
-
-can even check every city in the world !!
+and You can check every city in the world !!
 
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
 
-## Advantages
-- Escalabilidade: A containerização facilita a implantação e o gerenciamento dos serviços.
-- Eficiência: O Redis reduz a latência e o consumo de recursos das APIs externas (menor número de requisições à API e menor tempo de resposta)
-- Organização: O Nginx centraliza o roteamento, simplificando a arquitetura.
+## Advantages of using Docker
 
+-Scalability: Containerization makes service deployment and management easier.
 
+-Efficiency: Redis reduces latency and resource consumption from external APIs (fewer API requests and faster response times).
 
-Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos em tecnologias modernas de desenvolvimento e infraestrutura.
+-Organization: Nginx centralizes routing, simplifying the architecture.
 
 
 ## Technologies Used
@@ -67,13 +63,8 @@ Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos e
 
 # Arquitetura do Projeto
 
-Backend Frontend Redis e
+![image](https://github.com/user-attachments/assets/e3dc7e71-ea87-4eb2-920d-6a49ccd2516d)
 
-Monatar esboco da aquitetura com imagem
-
-
-???
----
 
 ## Getting Started
 
