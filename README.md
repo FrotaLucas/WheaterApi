@@ -1,19 +1,56 @@
-# Wheater App
+#  Projeto de Desenvolvimento de um Wheater App com Docker, APIs e Redis
 
-Esse projeto eh fruto de uma ideia que tive apos participar em um Workshop sobre Docker e Containerizacao de aplicacoes oferecido pela [Itestra](https://itestra.com/) Durante o Workshop eu percebi o poder dessa ferramenta no desenvolvimento de software e decidi portantto aplicar o que eu aprendi em um projeto proprio. Alem de usar Docker e Docker Compose tambem precisei usar duas APIs publicas que me permitem primeiro pegar Latitude e Longitude geografica de uma cidade ou endereco, e entao encontrar as condicoes de tempo do local. As APISs fonecem diversos indicadores metereologicos, mas para simplificar a solucaco estou somente usando Probabilidade de chuva e Temperatura do local. Para ganhar mais excelencia no projeto, implementei um servico de Redis dentro de um container para poder trabalhar junto com as APIS. Basicamente o Redis evita a sobrecarga de chamada das apis. No modelo da minha aplicacao estou partindo do principio que a previsao do tempo nao vai mudar ate o final do dia, portanto podemos deixar o resultado salvo no servico do Redis e ser recuperado para uma nova consulta. 
+Este projeto surgiu após minha participação em um workshop sobre Docker e containerização de aplicações, oferecido pela [Itestra](https://itestra.com/). Durante o evento, pude perceber o potencial dessas tecnologias no desenvolvimento de software e decidi aplicar os conhecimentos adquiridos em um projeto próprio.
 
-Redis foi pensado para armazenar tabela usando combinacao de latitute e longitude dado que sao valores unicos
+Tecnologias e Arquitetura
+Além do Docker e Docker Compose, utilizei duas APIs públicas para obter:
 
-vantagens:
-  Reduz o número de requisições à API
+1.Coordenadas geográficas (latitude e longitude) de uma cidade ou endereço.
 
-  Evita sobrecarga ou bloqueios na APIs
+2.Condições meteorológicas do local, como probabilidade de chuva e temperatura (para simplificar a solução, foquei apenas nesses dois indicadores).
 
-  Melhora o tempo de resposta da aplicacao
+Para otimizar o desempenho, implementei um **serviço de Redis em um container**, que atua como cache e evita a sobrecarga de chamadas repetidas às APIs. O modelo da aplicação parte do princípio de que a previsão do tempo não se altera até o final do dia, permitindo que os dados sejam armazenados no Redis e reutilizados em consultas subsequentes.
+
+Além disso, criei um **container com Nginx** para gerenciar o roteamento das requisições do usuário, direcionando-as para o serviço adequado:
+
+- Frontend, se a solicitação for relacionada à interface.
+
+- Backend, se for uma chamada à API.
+
+## Advantages
+- Escalabilidade: A containerização facilita a implantação e o gerenciamento dos serviços.
+- Eficiência: O Redis reduz a latência e o consumo de recursos das APIs externas (menor número de requisições à API e menor tempo de resposta)
+- Organização: O Nginx centraliza o roteamento, simplificando a arquitetura.
 
 
+
+Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos em tecnologias modernas de desenvolvimento e infraestrutura.
 
 ---
+
+
+# Application:
+![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
+
+You can check the precipitation
+![image](https://github.com/user-attachments/assets/79c1ac7b-30bf-434e-9276-fd5254ccf0c6)
+
+You can check the Temperature
+![image](https://github.com/user-attachments/assets/1c519eb8-a186-400c-861a-912cde860f8d)
+
+
+
+Image : you can also use the adress instead of city to get more accuracy
+![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
+
+Image Temperature: you can also use the adress instead of city to get more accuracy
+![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
+
+
+can even check every city in the world !!
+![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
+
+# Project Structure
 
 # Arquitetura do Projeto
 
@@ -32,38 +69,3 @@ Monatar esboco da aquitetura com imagem
 
 [Link Api open cage data / describe latitude and longitude ](https://opencagedata.com/api#quickstart)
 
-
-Images Precipitation:
-![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
-
-Cheche temperature in Rio
-![image](https://github.com/user-attachments/assets/79c1ac7b-30bf-434e-9276-fd5254ccf0c6)
-
-Image Precipitation
-![image](https://github.com/user-attachments/assets/1c519eb8-a186-400c-861a-912cde860f8d)
-
-
-
-Image : you can also check a adress instead of city
-![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
-
-and temperature
-![image](https://github.com/user-attachments/assets/be1a2f08-76c0-402a-9c24-d03f3737e200)
-
-
-most cold city in the world
-![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
-
-# Project Structure
-
-# Project Structure
-WheaterSolutionFolder/  
-├---docker-compose.yml /           # Spring Boot app (Dockerized)  
-|---WheaterApi/
-|   |--Dockerfile
-|   |--WheaterApi.csproj
-├── frontend/          # Angular app (Dockerized)  
-├── docker-compose.yml # Orchestrates all services  
-└── README.md 
-
-Acknowledgments
