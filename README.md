@@ -25,18 +25,17 @@ Enable users to check the weather forecast for the day (Temperature and Chance o
 ---
 
 ## Application:
-Chances of precipitation 
+Chances of rain today 
+
 ![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
 
 You can check the temperature in your area
+
 ![image](https://github.com/user-attachments/assets/79c1ac7b-30bf-434e-9276-fd5254ccf0c6)
 
-You can check the Temperature
-![image](https://github.com/user-attachments/assets/1c519eb8-a186-400c-861a-912cde860f8d)
 
+You can also use the adress instead of city to get more accuracy ;)
 
-
-Image : you can also use the adress instead of city to get more accuracy
 ![image](https://github.com/user-attachments/assets/3bc8ef6a-0296-4f37-87fa-e14551bb02c6)
 
 Image Temperature: you can also use the adress instead of city to get more accuracy
@@ -44,6 +43,7 @@ Image Temperature: you can also use the adress instead of city to get more accur
 
 
 can even check every city in the world !!
+
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
 
 ## Advantages
