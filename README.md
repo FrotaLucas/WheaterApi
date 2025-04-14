@@ -54,7 +54,7 @@ and you can even check every city in the world !!
 ## Technologies Used
 
 - **.NET Core**: Backend framework for building robust and scalable web applications.
-- **Blazor Web Assembly**: Frontend framework for managing web UIs using C# instead of JavaScript and Api requests.
+- **Blazor Web Assembly**: Frontend framework for managing web UIs using C# instead of JavaScript.
 - **Syncfusion**: Framework for building Grids, Line Charts and Area Charts for visualizing weather data and metrics.
 - **Docker**: Used to containerize the application components, ensuring consistency across different environments and simplifying deployment and scaling.
 - **Redis** An in-memory data structure store used as a caching layer to reduce API calls and improve response time.
