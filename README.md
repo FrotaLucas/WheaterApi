@@ -19,15 +19,16 @@ Additionally, I created a **container with Nginx** to manage the routing of user
 
 ---
 
-## Objetivo do App: 
-Possibilitar verificacao da previsao do tempo no dia ( Temperature e Chances de Chuva)
+## Why this app ? 
+Enable users to check the weather forecast for the day (Temperature and Chance of Rain).
 
 ---
 
 ## Application:
+Chances of precipitation 
 ![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
 
-You can check the precipitation
+You can check the temperature in your area
 ![image](https://github.com/user-attachments/assets/79c1ac7b-30bf-434e-9276-fd5254ccf0c6)
 
 You can check the Temperature
@@ -58,14 +59,11 @@ Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos e
 ## Technologies Used
 
 - **.NET Core**: Backend framework for building robust and scalable web applications.
-- **Blazor**: Frontend framework for managing web UIs using C# instead of JavaScript and Api requests.
+- **Blazor Web Assembly**: Frontend framework for managing web UIs using C# instead of JavaScript and Api requests.
 - **Syncfusion**: Framework for building Grids, Line Charts and Area Charts for visualizing weather data and metrics.
 - **Docker**: Used to containerize the application components, ensuring consistency across different environments and simplifying deployment and scaling.
 - **Redis** An in-memory data structure store used as a caching layer to reduce API calls and improve response time.
 - **Nginx**  Acts as a reverse proxy and load balancer, managing incoming requests and routing them efficiently to the appropriate service (frontend or backend).
-
-
-# Project Structure
 
 # Arquitetura do Projeto
 
@@ -73,12 +71,29 @@ Backend Frontend Redis e
 
 Monatar esboco da aquitetura com imagem
 
-# Contextualizando
 
 ???
 ---
 
-# documentation for API
+## Getting Started
+
+Follow these steps to set up the project locally:
+
+### Clone the Repository
+
+git clone https://github.com/FrotaLucas/WheaterApi.git
+
+### Run the Application
+
+1. cd WheaterApi
+2. open Docker Desktop
+3. docker-compose up -d --build
+
+### Contact
+
+[LinkedIn](https://www.linkedin.com/in/your-profile/)
+
+# documentation for APIs
 
 [Link Api open-meteo](https://open-meteo.com/en/docs?latitude=48.1374&longitude=11.5755&timezone=Europe%2FBerlin&daily=sunrise,sunset&forecast_days=1)
 
