@@ -17,16 +17,6 @@ Additionally, I created a **container with Nginx** to manage the routing of user
 
 - Backend, if it is an API call.
 
-
-## Advantages
-- Escalabilidade: A containerização facilita a implantação e o gerenciamento dos serviços.
-- Eficiência: O Redis reduz a latência e o consumo de recursos das APIs externas (menor número de requisições à API e menor tempo de resposta)
-- Organização: O Nginx centraliza o roteamento, simplificando a arquitetura.
-
-
-
-Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos em tecnologias modernas de desenvolvimento e infraestrutura.
-
 ---
 
 ## Objetivo do App: 
@@ -54,6 +44,16 @@ Image Temperature: you can also use the adress instead of city to get more accur
 
 can even check every city in the world !!
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
+
+## Advantages
+- Escalabilidade: A containerização facilita a implantação e o gerenciamento dos serviços.
+- Eficiência: O Redis reduz a latência e o consumo de recursos das APIs externas (menor número de requisições à API e menor tempo de resposta)
+- Organização: O Nginx centraliza o roteamento, simplificando a arquitetura.
+
+
+
+Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos em tecnologias modernas de desenvolvimento e infraestrutura.
+
 
 ## Technologies Used
 
