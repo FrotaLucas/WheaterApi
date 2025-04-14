@@ -1,4 +1,4 @@
-#  Projeto de Desenvolvimento de um Wheater App com Docker, APIs e Redis
+#  Docker e conteinerizacao de Servicos aplicados em um projeto pratico
 
 Este projeto surgiu após minha participação em um workshop sobre Docker e containerização de aplicações, oferecido pela [Itestra](https://itestra.com/). Durante o evento, pude perceber o potencial dessas tecnologias no desenvolvimento de software e decidi aplicar os conhecimentos adquiridos em um projeto próprio.
 
