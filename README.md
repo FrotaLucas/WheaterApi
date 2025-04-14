@@ -57,8 +57,11 @@ most cold city in the world
 # Project Structure
 
 # Project Structure
-workshop-full-stack/  
-├── backend/           # Spring Boot app (Dockerized)  
+WheaterSolutionFolder/  
+├---docker-compose.yml /           # Spring Boot app (Dockerized)  
+|---WheaterApi/
+|   |--Dockerfile
+|   |--WheaterApi.csproj
 ├── frontend/          # Angular app (Dockerized)  
 ├── docker-compose.yml # Orchestrates all services  
 └── README.md 
