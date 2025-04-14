@@ -28,8 +28,12 @@ Este projeto foi uma excelente oportunidade para consolidar meus conhecimentos e
 
 ---
 
+## Objetivo do App: 
+Possibilitar verificacao da previsao do tempo no dia ( Temperature e Chances de Chuva)
 
-# Application:
+---
+
+## Application:
 ![image](https://github.com/user-attachments/assets/ac518dda-33be-4a38-95f7-a1d37348660b)
 
 You can check the precipitation
@@ -49,6 +53,16 @@ Image Temperature: you can also use the adress instead of city to get more accur
 
 can even check every city in the world !!
 ![image](https://github.com/user-attachments/assets/a161db95-fd90-4257-9e4a-22cfa50b4585)
+
+## Technologies Used
+
+- **.NET Core**: Backend framework for building robust and scalable web applications.
+- **Blazor**: Frontend framework for managing web UIs using C# instead of JavaScript and Api requests.
+- **Syncfusion**: Framework for building Grids, Line Charts and Area Charts for visualizing weather data and metrics.
+- **Docker**: Used to containerize the application components, ensuring consistency across different environments and simplifying deployment and scaling.
+- **Redis** An in-memory data structure store used as a caching layer to reduce API calls and improve response time.
+- **Nginx**  Acts as a reverse proxy and load balancer, managing incoming requests and routing them efficiently to the appropriate service (frontend or backend).
+
 
 # Project Structure
 
