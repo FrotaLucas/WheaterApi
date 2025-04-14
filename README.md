@@ -1,21 +1,22 @@
-#  Docker e conteinerizacao de Servicos aplicados em um projeto pratico
+# Docker and Service Containerization Applied in a Practical Project
 
-Este projeto surgiu após minha participação em um workshop sobre Docker e containerização de aplicações, oferecido pela [Itestra](https://itestra.com/). Durante o evento, pude perceber o potencial dessas tecnologias no desenvolvimento de software e decidi aplicar os conhecimentos adquiridos em um projeto próprio.
+This project arose after my participation in a workshop on Docker and application containerization, offered by [Itestra](https://itestra.com/). During the event, I was able to realize the potential of these technologies in software development and decided to apply the knowledge gained in my own project.
 
-Tecnologias e Arquitetura
-Além do Docker e Docker Compose, utilizei duas APIs públicas para obter:
+Technologies and Architecture
+In addition to Docker and Docker Compose, I used two public APIs to obtain:
 
-1.Coordenadas geográficas (latitude e longitude) de uma cidade ou endereço.
+1. Geographic coordinates (latitude and longitude) of a city or address.
 
-2.Condições meteorológicas do local, como probabilidade de chuva e temperatura (para simplificar a solução, foquei apenas nesses dois indicadores).
+2. Local weather conditions, such as the probability of rain and temperature (to simplify the solution, I focused only on these two indicators).
 
-Para otimizar o desempenho, implementei um **serviço de Redis em um container**, que atua como cache e evita a sobrecarga de chamadas repetidas às APIs. O modelo da aplicação parte do princípio de que a previsão do tempo não se altera até o final do dia, permitindo que os dados sejam armazenados no Redis e reutilizados em consultas subsequentes.
+To optimize performance, I implemented a **Redis service in a container**, which acts as a cache and avoids the overload of repeated API calls. The application model is based on the assumption that the weather forecast does not change until the end of the day, allowing the data to be stored in Redis and reused in subsequent queries.
 
-Além disso, criei um **container com Nginx** para gerenciar o roteamento das requisições do usuário, direcionando-as para o serviço adequado:
+Additionally, I created a **container with Nginx** to manage the routing of user requests, directing them to the appropriate service:
 
-- Frontend, se a solicitação for relacionada à interface.
+- Frontend, if the request is related to the interface.
 
-- Backend, se for uma chamada à API.
+- Backend, if it is an API call.
+
 
 ## Advantages
 - Escalabilidade: A containerização facilita a implantação e o gerenciamento dos serviços.
