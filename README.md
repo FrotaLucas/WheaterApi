@@ -44,11 +44,11 @@ and you can even check every city in the world !!
 
 ## Advantages of using Docker
 
--Scalability: Containerization makes service deployment and management easier.
+- Scalability: Containerization makes service deployment and management easier.
 
--Efficiency: Redis reduces latency and resource consumption from external APIs (fewer API requests and faster response times).
+- Efficiency: Redis reduces latency and resource consumption from external APIs (fewer API requests and faster response times).
 
--Organization: Nginx centralizes routing, simplifying the architecture.
+- Organization: Nginx centralizes routing, simplifying the architecture.
 
 
 ## Technologies Used
@@ -83,7 +83,7 @@ git clone https://github.com/FrotaLucas/WheaterApi.git
 
 [LinkedIn](https://www.linkedin.com/in/your-profile/)
 
-# documentation for APIs
+# Documentation for APIs
 
 [Link Api open-meteo](https://open-meteo.com/en/docs?latitude=48.1374&longitude=11.5755&timezone=Europe%2FBerlin&daily=sunrise,sunset&forecast_days=1)
 
