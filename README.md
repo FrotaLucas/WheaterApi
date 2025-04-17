@@ -81,7 +81,7 @@ git clone https://github.com/FrotaLucas/WheaterApi.git
 
 ### Contact
 
-[LinkedIn](https://www.linkedin.com/in/your-profile/)
+[LinkedIn](https://www.linkedin.com/in/lucas-dias-frota-9020b2126/)
 
 # Documentation for APIs
 
