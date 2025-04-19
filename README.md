@@ -51,7 +51,7 @@ Containerization makes service deployment and management easier.
 Each container runs independently, with its own file system, libraries, and dependencies. This prevents conflicts between environments.
 
 - Better Organization:
-Containers are isolated from each other and from the host system, which reduces the attack surface. Additionally, organizing the project by services (e.g. backend, frontend) in separate containers makes the architecture cleaner and more modular.
+Containers are isolated from each other and from the host system, which reduces the attack surface. Additionally, organizing the project by services (e.g. backend, frontend and database) in separate containers makes the architecture cleaner and more modular.
 
 - Ease of Reproducing Environments:
 With files like Dockerfile and docker-compose.yml, you can recreate exactly the same environment anywhere with just a few commands.
