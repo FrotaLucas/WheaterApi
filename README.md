@@ -44,11 +44,20 @@ and you can even check every city in the world !!
 
 ## Advantages of using Docker
 
-- Scalability: Containerization makes service deployment and management easier.
+- Scalability:
+Containerization makes service deployment and management easier.
 
-- Efficiency: Redis reduces latency and resource consumption from external APIs (fewer API requests and faster response times).
+- Isolation of Environments:
+Each container runs independently, with its own file system, libraries, and dependencies. This prevents conflicts between environments.
 
-- Organization: Nginx centralizes routing, simplifying the architecture.
+- Better Organization:
+Containers are isolated from each other and from the host system, which reduces the attack surface. Additionally, organizing the project by services (e.g. backend, frontend) in separate containers makes the architecture cleaner and more modular.
+
+- Ease of Reproducing Environments:
+With files like Dockerfile and docker-compose.yml, you can recreate exactly the same environment anywhere with just a few commands.
+
+- Ease of Maintenance:
+This separation into containers helps identify and fix issues more quickly without bringing down the entire system.
 
 
 ## Technologies Used
