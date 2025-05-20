@@ -88,7 +88,7 @@ git clone https://github.com/FrotaLucas/WheaterApi.git
 2. open Docker Desktop
 3. docker-compose up -d --build
 
-### Contact
+### Let's connect
 
 [LinkedIn](https://www.linkedin.com/in/lucas-dias-frota-9020b2126/)
 
